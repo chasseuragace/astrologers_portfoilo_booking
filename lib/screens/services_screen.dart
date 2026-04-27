@@ -4,7 +4,7 @@ import '../models/service.dart';
 class ServicesScreen extends StatelessWidget {
   const ServicesScreen({super.key});
 
-  static const List<Service> defaultServices = [
+  static final List<Service> defaultServices = [
     Service(
       id: '1',
       title: 'Kundali Consultation',
