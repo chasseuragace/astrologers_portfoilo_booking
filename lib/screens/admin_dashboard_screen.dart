@@ -27,12 +27,10 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
       if (mounted) {
         setState(() {
           _bookings = bookings;
-          _isLoading = false;
         });
       }
     } catch (e) {
       if (mounted) {
-        setState(() => _isLoading = false);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Failed to load bookings: $e')),
         );
