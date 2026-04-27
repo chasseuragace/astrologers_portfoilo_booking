@@ -1,14 +1,14 @@
  import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'screens/home_screen.dart';
-import 'services/data_service.dart';
 
-void main() {
-  runApp(const SmartBusinessCardApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const AstrologerWebsiteApp());
 }
 
-class SmartBusinessCardApp extends StatelessWidget {
-  const SmartBusinessCardApp({super.key});
+class AstrologerWebsiteApp extends StatelessWidget {
+  const AstrologerWebsiteApp({super.key});
 
   @override
   Widget build(BuildContext context) {

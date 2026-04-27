@@ -1,162 +1,232 @@
 import 'package:flutter/material.dart';
-import '../models/user.dart';
-import '../models/company.dart';
-import '../models/calendar_event.dart';
-import '../services/data_service.dart';
-import '../widgets/profile_header.dart';
-import '../widgets/calendar_locations.dart';
-import '../widgets/action_buttons.dart';
-import 'booking_screen.dart';
-import 'feedback_screen.dart';
-import 'team_screen.dart';
+import '../models/profile.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  final DataService _dataService = DataService();
-  User? _currentUser;
-  Company? _currentCompany;
-  List<CalendarEvent> _todaysEvents = [];
-  
-  // Mock QR code scanning - in real app this would come from URL params
-  final String _mockUserId = 'user-1';
-
-  @override
-  void initState() {
-    super.initState();
-    _loadUserData();
-  }
-
-  void _loadUserData() {
-    final user = _dataService.getUserById(_mockUserId);
-    if (user != null) {
-      setState(() {
-        _currentUser = user;
-        _currentCompany = _dataService.getCompanyById(user.companyId);
-        _todaysEvents = _dataService.getTodaysEventsForUser(user.id);
-      });
-    }
-  }
-
-  void _navigateToBooking() {
-    if (_currentUser != null) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return Builder(
-            builder: (context) {
-              return SizedBox(
-              
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: Dialog(
-                  
-                  child: BookingScreen(
-                    userId: _currentUser!.id,
-                  ),
-                ),
-              );
-            }
-          );
-        },
-      );
-    }
-  }
-
-void _showFeedbackDialog() {
-  if (_currentUser != null) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return Dialog(
-          insetPadding: const EdgeInsets.all(16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: SizedBox(
-            width: 600,
-            height: 500,
-            child: FeedbackScreen(
-              targetUserId: _currentUser!.id,
-              targetUserName: _currentUser!.name,
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-  void _navigateToTeam() {
-    if (_currentUser != null) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => TeamScreen(companyId: _currentUser!.companyId),
-        ),
-      );
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    if (_currentUser == null || _currentCompany == null) {
-      return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
+    final profile = Profile.defaultProfile;
+    final scheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-
-      body:Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xFFEFF6FF),
-                    Color(0xFFE0E7FF),
-                  ],
-                ),
-              ),
-              child:Column(
-          children: [
-            Expanded(
-              child: SafeArea(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    children: [
-                      ProfileHeader(
-                        user: _currentUser!,
-                        company: _currentCompany!,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              scheme.primary.withOpacity(0.1),
+              scheme.surface,
+            ],
+          ),
+        ),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 32),
+                
+                // Profile Photo
+                Container(
+                  width: 120,
+                  height: 120,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: scheme.primary,
+                    boxShadow: [
+                      BoxShadow(
+                        color: scheme.primary.withOpacity(0.3),
+                        blurRadius: 20,
+                        spreadRadius: 5,
                       ),
-                      const SizedBox(height: 16),
-                      CalendarLocations(events: _todaysEvents),
-                      const SizedBox(height: 16),
-                     
                     ],
                   ),
+                  child: Icon(
+                    Icons.person,
+                    size: 60,
+                    color: scheme.onPrimary,
+                  ),
                 ),
-              ),
+                
+                const SizedBox(height: 24),
+                
+                // Name
+                Text(
+                  profile.name,
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: scheme.onSurface,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                
+                const SizedBox(height: 8),
+                
+                // Title
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  decoration: BoxDecoration(
+                    color: scheme.primaryContainer,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    profile.title,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: scheme.onPrimaryContainer,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                
+                const SizedBox(height: 24),
+                
+                // Location
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.location_on,
+                      color: scheme.primary,
+                      size: 20,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      profile.location,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: scheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ],
+                ),
+                
+                const SizedBox(height: 32),
+                
+                // Short Bio
+                Card(
+                  elevation: 0,
+                  color: scheme.surface,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    side: BorderSide(
+                      color: scheme.outline.withOpacity(0.3),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'About',
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: scheme.primary,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          profile.shortBio,
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: scheme.onSurface,
+                            height: 1.5,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                
+                const SizedBox(height: 32),
+                
+                // Quick Actions
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _buildQuickAction(
+                      context,
+                      icon: Icons.calendar_month,
+                      label: 'Calendar',
+                      color: scheme.primary,
+                      onTap: () {
+                        // Navigate to calendar page
+                      },
+                    ),
+                    _buildQuickAction(
+                      context,
+                      icon: Icons.list_alt,
+                      label: 'Services',
+                      color: scheme.secondary,
+                      onTap: () {
+                        // Navigate to services page
+                      },
+                    ),
+                    _buildQuickAction(
+                      context,
+                      icon: Icons.event_available,
+                      label: 'Book Now',
+                      color: scheme.tertiary,
+                      onTap: () {
+                        // Navigate to booking form
+                      },
+                    ),
+                  ],
+                ),
+                
+                const SizedBox(height: 32),
+              ],
             ),
-        
-        ActionButtons(
-                    onBookingTap: _navigateToBooking,
-                    onFeedbackTap: _showFeedbackDialog,
-                    onTeamTap: _navigateToTeam,
-                    userName: _currentUser!.name,
-                    currentUser:_currentUser,
-                  ),  ],
+          ),
         ),
       ),
-  
+    );
+  }
+
+  Widget _buildQuickAction(
+    BuildContext context, {
+    required IconData icon,
+    required String label,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 16,
+        ),
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: color.withOpacity(0.3),
+          ),
+        ),
+        child: Column(
+          children: [
+            Icon(
+              icon,
+              color: color,
+              size: 28,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              label,
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                color: color,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
