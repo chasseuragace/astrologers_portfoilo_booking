@@ -2,6 +2,7 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'screens/home_screen.dart';
 import 'screens/services_screen.dart';
+import 'screens/booking_form_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,9 +18,28 @@ class AstrologerWebsiteApp extends StatelessWidget {
       title: 'Smart Business Card',
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
-      routes: {
-        '/': (context) => const HomeScreen(),
-        '/services': (context) => const ServicesScreen(),
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(
+              builder: (context) => const HomeScreen(),
+            );
+          case '/services':
+            return MaterialPageRoute(
+              builder: (context) => const ServicesScreen(),
+            );
+          case '/booking':
+            final service = settings.arguments as Service?;
+            return MaterialPageRoute(
+              builder: (context) => BookingFormScreen(
+                preselectedService: service,
+              ),
+            );
+          default:
+            return MaterialPageRoute(
+              builder: (context) => const HomeScreen(),
+            );
+        }
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(

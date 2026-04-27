@@ -194,12 +194,10 @@ class ServicesScreen extends StatelessWidget {
   }
 
   void _navigateToBooking(BuildContext context, Service service) {
-    // TODO: Navigate to booking screen with service pre-selected
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Booking for ${service.title} - Coming Soon!'),
-        behavior: SnackBarBehavior.floating,
-      ),
+    Navigator.pushNamed(
+      context,
+      '/booking',
+      arguments: service,
     );
   }
 }

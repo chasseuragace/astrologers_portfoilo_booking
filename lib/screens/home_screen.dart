@@ -172,7 +172,7 @@ class HomeScreen extends StatelessWidget {
                       label: 'Book Now',
                       color: scheme.tertiary,
                       onTap: () {
-                        // Navigate to booking form
+                        Navigator.pushNamed(context, '/booking');
                       },
                     ),
                   ],
