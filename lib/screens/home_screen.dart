@@ -163,7 +163,7 @@ class HomeScreen extends StatelessWidget {
                       label: 'Services',
                       color: scheme.secondary,
                       onTap: () {
-                        // Navigate to services page
+                        Navigator.pushNamed(context, '/services');
                       },
                     ),
                     _buildQuickAction(
