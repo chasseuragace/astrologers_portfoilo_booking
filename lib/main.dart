@@ -4,6 +4,7 @@ import 'screens/home_screen.dart';
 import 'screens/services_screen.dart';
 import 'screens/booking_form_screen.dart';
 import 'screens/contact_screen.dart';
+import 'screens/admin_login_screen.dart';
 import 'models/service.dart';
 
 void main() async {
@@ -40,6 +41,10 @@ class AstrologerWebsiteApp extends StatelessWidget {
           case '/contact':
             return MaterialPageRoute(
               builder: (context) => const ContactScreen(),
+            );
+          case '/admin-login':
+            return MaterialPageRoute(
+              builder: (context) => const AdminLoginScreen(),
             );
           default:
             return MaterialPageRoute(
