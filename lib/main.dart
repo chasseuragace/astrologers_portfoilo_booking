@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'screens/home_screen.dart';
 import 'screens/services_screen.dart';
 import 'screens/booking_form_screen.dart';
+import 'screens/contact_screen.dart';
 import 'models/service.dart';
 
 void main() async {
@@ -35,6 +36,10 @@ class AstrologerWebsiteApp extends StatelessWidget {
               builder: (context) => BookingFormScreen(
                 preselectedService: service,
               ),
+            );
+          case '/contact':
+            return MaterialPageRoute(
+              builder: (context) => const ContactScreen(),
             );
           default:
             return MaterialPageRoute(

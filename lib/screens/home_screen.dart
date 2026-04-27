@@ -144,6 +144,30 @@ class HomeScreen extends StatelessWidget {
                 
                 const SizedBox(height: 32),
                 
+                // Contact Button
+                OutlinedButton.icon(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/contact');
+                  },
+                  icon: Icon(Icons.contact_page, color: scheme.primary),
+                  label: Text(
+                    'Contact',
+                    style: TextStyle(color: scheme.primary),
+                  ),
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide(color: scheme.primary),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 32,
+                      vertical: 12,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                ),
+                
+                const SizedBox(height: 32),
+                
                 // Quick Actions
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
