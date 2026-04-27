@@ -1,5 +1,6 @@
  import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'screens/home_screen.dart';
 import 'screens/services_screen.dart';
 import 'screens/booking_form_screen.dart';
@@ -10,6 +11,7 @@ import 'models/service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const AstrologerWebsiteApp());
 }
 

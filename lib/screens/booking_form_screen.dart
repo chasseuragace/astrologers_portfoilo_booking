@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nepali_date_picker/nepali_date_picker.dart';
 import '../models/astro_booking.dart';
 import '../models/service.dart';
+import '../services/booking_service.dart';
 
 class BookingFormScreen extends StatefulWidget {
   final Service? preselectedService;
@@ -51,7 +52,7 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
 
     setState(() => _isSubmitting = true);
 
-    AstroBooking(
+    final booking = AstroBooking(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       name: _nameController.text.trim(),
       phone: _phoneController.text.trim(),
@@ -70,8 +71,19 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
       updatedAt: DateTime.now(),
     );
 
-    // TODO: Save booking to backend
-    await Future.delayed(const Duration(seconds: 1));
+    try {
+      await BookingService().addBooking(booking);
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _isSubmitting = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to submit booking: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
 
     if (!mounted) return;
 

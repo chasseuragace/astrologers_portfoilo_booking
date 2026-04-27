@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/astro_booking.dart';
+import '../services/booking_service.dart';
 
 class AdminDashboardScreen extends StatefulWidget {
   const AdminDashboardScreen({super.key});
@@ -10,50 +11,33 @@ class AdminDashboardScreen extends StatefulWidget {
 
 class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
   BookingStatus? _selectedFilter;
-  final List<AstroBooking> _bookings = _generateMockBookings();
+  final BookingService _bookingService = BookingService();
+  List<AstroBooking> _bookings = [];
+  bool _isLoading = true;
 
-  static List<AstroBooking> _generateMockBookings() {
-    return [
-      AstroBooking(
-        id: '1',
-        name: 'Ram Bahadur',
-        phone: '+977-98XXXXXXXX',
-        email: 'ram@example.com',
-        serviceType: 'Kundali Consultation',
-        nepaliDate: '2081/05/15',
-        time: '10:00 AM',
-        location: 'Office',
-        description: 'Need marriage compatibility check',
-        status: BookingStatus.pending,
-        createdAt: DateTime.now(),
-      ),
-      AstroBooking(
-        id: '2',
-        name: 'Sita Devi',
-        phone: '+977-97XXXXXXXX',
-        email: 'sita@example.com',
-        serviceType: 'Vastu Consultation',
-        nepaliDate: '2081/05/16',
-        time: '2:00 PM',
-        location: 'Home Visit',
-        description: 'New house vastu check',
-        status: BookingStatus.approved,
-        createdAt: DateTime.now().subtract(const Duration(days: 1)),
-      ),
-      AstroBooking(
-        id: '3',
-        name: 'Hari Sharma',
-        phone: '+977-98XXXXXXXX',
-        email: 'hari@example.com',
-        serviceType: 'Gemstone Recommendation',
-        nepaliDate: '2081/05/18',
-        time: '11:00 AM',
-        location: 'Office',
-        description: null,
-        status: BookingStatus.completed,
-        createdAt: DateTime.now().subtract(const Duration(days: 2)),
-      ),
-    ];
+  @override
+  void initState() {
+    super.initState();
+    _loadBookings();
+  }
+
+  Future<void> _loadBookings() async {
+    try {
+      final bookings = await _bookingService.getAllBookings();
+      if (mounted) {
+        setState(() {
+          _bookings = bookings;
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() => _isLoading = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to load bookings: $e')),
+        );
+      }
+    }
   }
 
   List<AstroBooking> get _filteredBookings {
@@ -61,19 +45,96 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
     return _bookings.where((b) => b.status == _selectedFilter).toList();
   }
 
-  void _updateBookingStatus(AstroBooking booking, BookingStatus newStatus) {
-    setState(() {
-      final index = _bookings.indexWhere((b) => b.id == booking.id);
-      if (index != -1) {
-        _bookings[index] = booking.copyWith(status: newStatus);
+  Future<void> _updateBookingStatus(AstroBooking booking, BookingStatus newStatus) async {
+    try {
+      await _bookingService.updateBookingStatus(booking.id, newStatus);
+      setState(() {
+        final index = _bookings.indexWhere((b) => b.id == booking.id);
+        if (index != -1) {
+          _bookings[index] = booking.copyWith(status: newStatus);
+        }
+      });
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Booking ${newStatus.displayName}'),
+            backgroundColor: newStatus == BookingStatus.approved
+                ? Colors.green
+                : Colors.orange,
+          ),
+        );
       }
-    });
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Booking ${newStatus.displayName}'),
-        backgroundColor: newStatus == BookingStatus.approved
-            ? Colors.green
-            : Colors.orange,
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Failed to update booking: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final filtered = _filteredBookings;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Admin Dashboard'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: _loadBookings,
+          ),
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, '/');
+            },
+          ),
+        ],
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              scheme.primary.withOpacity(0.05),
+              scheme.surface,
+            ],
+          ),
+        ),
+        child: _isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : Column(
+                children: [
+                  _buildStatsCards(scheme),
+                  _buildFilterChips(scheme),
+                  Expanded(
+                    child: filtered.isEmpty
+                        ? Center(
+                            child: Text(
+                              'No bookings found',
+                              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                color: scheme.onSurfaceVariant,
+                              ),
+                            ),
+                          )
+                        : ListView.builder(
+                            padding: const EdgeInsets.all(16),
+                            itemCount: filtered.length,
+                            itemBuilder: (context, index) {
+                              return _buildBookingCard(filtered[index], scheme);
+                            },
+                          ),
+                  ),
+                ],
+              ),
       ),
     );
   }
