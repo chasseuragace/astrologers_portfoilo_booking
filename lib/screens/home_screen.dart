@@ -203,6 +203,21 @@ class HomeScreen extends StatelessWidget {
                 ),
                 
                 const SizedBox(height: 32),
+                
+                // Admin Access (small link at bottom)
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/admin-login');
+                  },
+                  child: Text(
+                    'Admin Login',
+                    style: TextStyle(
+                      color: scheme.onSurfaceVariant.withOpacity(0.6),
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
               ],
             ),
           ),
