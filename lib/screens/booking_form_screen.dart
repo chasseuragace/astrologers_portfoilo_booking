@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nepali_date_picker/nepali_date_picker.dart';
-import 'package:nepali_utils/nepali_utils.dart';
 import '../models/astro_booking.dart';
 import '../models/service.dart';
 
@@ -324,12 +323,11 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
         suffixIcon: Icon(Icons.calendar_today, color: scheme.primary),
       ),
       onTap: () async {
-        final NepaliDateTime? selected = await showNepaliDatePicker(
+        final DateTime? selected = await showNepaliDatePicker(
           context: context,
-          initialDate: NepaliDateTime.now(),
-          firstDate: NepaliDateTime(2080),
-          lastDate: NepaliDateTime(2090),
-          language: Language.nepali,
+          initialDate: DateTime.now(),
+          firstDate: DateTime(2080),
+          lastDate: DateTime(2090),
         );
 
         if (selected != null && mounted) {
