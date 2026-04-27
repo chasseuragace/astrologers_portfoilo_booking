@@ -13,7 +13,6 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
   BookingStatus? _selectedFilter;
   final BookingService _bookingService = BookingService();
   List<AstroBooking> _bookings = [];
-  bool _isLoading = true;
 
   @override
   void initState() {

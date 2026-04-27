@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nepali_date_picker/nepali_date_picker.dart';
 import '../models/astro_booking.dart';
 import '../models/service.dart';
 import '../services/booking_service.dart';
@@ -176,9 +175,9 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
                   },
                 ),
                 const SizedBox(height: 16),
-                _buildDateField(
+                _buildTextField(
                   controller: _nepaliDateController,
-                  label: 'Nepali Date *',
+                  label: 'Nepali Date (e.g., 2081/05/12) *',
                   icon: Icons.calendar_today,
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
@@ -300,54 +299,6 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
           borderSide: BorderSide(color: scheme.primary, width: 2),
         ),
       ),
-    );
-  }
-
-  Widget _buildDateField({
-    required TextEditingController controller,
-    required String label,
-    required IconData icon,
-    String? Function(String?)? validator,
-  }) {
-    final scheme = Theme.of(context).colorScheme;
-
-    return TextFormField(
-      controller: controller,
-      readOnly: true,
-      validator: validator,
-      decoration: InputDecoration(
-        labelText: label,
-        prefixIcon: Icon(icon, color: scheme.primary),
-        filled: true,
-        fillColor: scheme.surface,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: scheme.outline),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: scheme.outline.withOpacity(0.5)),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: scheme.primary, width: 2),
-        ),
-        suffixIcon: Icon(Icons.calendar_today, color: scheme.primary),
-      ),
-      onTap: () async {
-        final DateTime? selected = await showNepaliDatePicker(
-          context: context,
-          initialDate: DateTime.now(),
-          firstDate: DateTime(2080),
-          lastDate: DateTime(2090),
-        );
-
-        if (selected != null && mounted) {
-          setState(() {
-            controller.text = '${selected.year}/${selected.month}/${selected.day}';
-          });
-        }
-      },
     );
   }
 }
