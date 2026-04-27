@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/astro_booking.dart';
 
 class BookingService {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final CollectionReference _bookingsCollection =
       FirebaseFirestore.instance.collection('bookings');
 
