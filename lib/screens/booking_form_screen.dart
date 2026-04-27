@@ -50,7 +50,7 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
 
     setState(() => _isSubmitting = true);
 
-    final booking = AstroBooking(
+    AstroBooking(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       name: _nameController.text.trim(),
       phone: _phoneController.text.trim(),
