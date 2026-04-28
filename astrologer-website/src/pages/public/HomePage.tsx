@@ -3,9 +3,11 @@ import { ServiceCard } from '../../components/ui/ServiceCard'
 import { CtaButton } from '../../components/ui/CtaButton'
 import { useTranslation } from 'react-i18next'
 import { SERVICES } from '../../constants/services'
+import { useState } from 'react'
 
 export function HomePage() {
   const { t } = useTranslation()
+  const [imageLoaded, setImageLoaded] = useState(false)
 
   return (
     <PageLayout>
@@ -13,11 +15,14 @@ export function HomePage() {
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-cosmic-gradient">
           {/* Cover image background */}
-          <div className="absolute inset-0 opacity-40">
+          <div className="absolute inset-0 opacity-40 overflow-hidden">
             <img
               src="/cover.jpeg"
               alt="Background"
-              className="w-full h-full object-cover object-center md:object-top"
+              onLoad={() => setImageLoaded(true)}
+              className={`w-full h-full object-cover object-center md:object-top transition-transform duration-[2000ms] ease-out ${
+                imageLoaded ? 'scale-100' : 'scale-125'
+              }`}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-cosmic-950 via-cosmic-950/50 to-transparent"></div>
           </div>
