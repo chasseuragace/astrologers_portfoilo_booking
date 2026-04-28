@@ -51,23 +51,23 @@ export function HomePage() {
                 </div>
               </div>
               
-              <h1 className="text-6xl md:text-8xl font-display font-bold mb-4 text-gold-400 tracking-wide animate-slide-up" style={{ animationDelay: '0.2s' }}>
+              <h1 className="text-6xl md:text-8xl font-display font-bold mb-4 text-gold-400 tracking-wide opacity-0 animate-slide-up" style={{ animationDelay: '0.2s' }}>
                 शालिग्राम दाहाल
               </h1>
               
-              <h2 className="text-2xl md:text-4xl font-display font-medium mb-4 text-amber-100 animate-slide-up" style={{ animationDelay: '0.4s' }}>
+              <h2 className="text-2xl md:text-4xl font-display font-medium mb-4 text-amber-100 opacity-0 animate-slide-up" style={{ animationDelay: '0.4s' }}>
                 {t('home.subtitle')}
               </h2>
               
-              <p className="text-lg md:text-xl text-gold-400/90 mb-4 max-w-3xl mx-auto leading-relaxed animate-slide-up font-display font-medium" style={{ animationDelay: '0.5s' }}>
+              <p className="text-lg md:text-xl text-gold-400/90 mb-4 max-w-3xl mx-auto leading-relaxed opacity-0 animate-slide-up font-display font-medium" style={{ animationDelay: '0.5s' }}>
                 {t('home.locationValue')}
               </p>
               
-              <p className="text-lg md:text-xl text-amber-200/80 mb-12 max-w-3xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: '0.6s' }}>
+              <p className="text-lg md:text-xl text-amber-200/80 mb-12 max-w-3xl mx-auto leading-relaxed opacity-0 animate-slide-up" style={{ animationDelay: '0.6s' }}>
                 {t('home.description')}
               </p>
               
-              <div className="flex gap-6 justify-center flex-wrap animate-slide-up" style={{ animationDelay: '0.8s' }}>
+              <div className="flex gap-6 justify-center flex-wrap opacity-0 animate-slide-up" style={{ animationDelay: '0.8s' }}>
                 <CtaButton to="/calendar">{t('home.bookAppointment')}</CtaButton>
                 <CtaButton to="/services" variant="outline">{t('home.ourServices')}</CtaButton>
               </div>
