@@ -10,6 +10,7 @@ export interface ProfileEntity {
   readonly facebookUrl?: string;
   readonly vcardUrl?: string;
   readonly shortBio?: string;
+  readonly description?: string;
   readonly createdAt?: Date;
   readonly updatedAt?: Date;
 }
@@ -24,6 +25,7 @@ export class ProfileEntityClass implements ProfileEntity {
   readonly facebookUrl?: string;
   readonly vcardUrl?: string;
   readonly shortBio?: string;
+  readonly description?: string;
   readonly createdAt?: Date;
   readonly updatedAt?: Date;
 
@@ -37,6 +39,7 @@ export class ProfileEntityClass implements ProfileEntity {
     this.facebookUrl = data.facebookUrl;
     this.vcardUrl = data.vcardUrl;
     this.shortBio = data.shortBio;
+    this.description = data.description;
     this.createdAt = data.createdAt;
     this.updatedAt = data.updatedAt;
   }
@@ -52,6 +55,7 @@ export class ProfileEntityClass implements ProfileEntity {
       facebookUrl: partial.facebookUrl ?? this.facebookUrl,
       vcardUrl: partial.vcardUrl ?? this.vcardUrl,
       shortBio: partial.shortBio ?? this.shortBio,
+      description: partial.description ?? this.description,
       createdAt: partial.createdAt ?? this.createdAt,
       updatedAt: partial.updatedAt ?? this.updatedAt,
     });
@@ -68,6 +72,7 @@ export class ProfileEntityClass implements ProfileEntity {
       this.facebookUrl === other.facebookUrl &&
       this.vcardUrl === other.vcardUrl &&
       this.shortBio === other.shortBio &&
+      this.description === other.description &&
       this.createdAt?.getTime() === other.createdAt?.getTime() &&
       this.updatedAt?.getTime() === other.updatedAt?.getTime()
     );

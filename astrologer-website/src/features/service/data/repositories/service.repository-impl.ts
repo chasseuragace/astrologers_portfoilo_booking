@@ -10,19 +10,19 @@ export class ServiceRepositoryImpl implements ServiceRepository {
     throw new Error('UnimplementedError: Real repository not yet implemented');
   }
 
-  async getById(id: string): Promise<Either<Failure, ServiceEntity>> { // eslint-disable-line @typescript-eslint/no-unused-vars
+  async getById(_id: string): Promise<Either<Failure, ServiceEntity>> {
     throw new Error('UnimplementedError: Real repository not yet implemented');
   }
 
-  async add(entity: ServiceEntity): Promise<Either<Failure, ServiceEntity>> { // eslint-disable-line @typescript-eslint/no-unused-vars
+  async add(_entity: ServiceEntity): Promise<Either<Failure, ServiceEntity>> {
     throw new Error('UnimplementedError: Real repository not yet implemented');
   }
 
-  async update(entity: ServiceEntity): Promise<Either<Failure, ServiceEntity>> { // eslint-disable-line @typescript-eslint/no-unused-vars
+  async update(_entity: ServiceEntity): Promise<Either<Failure, ServiceEntity>> {
     throw new Error('UnimplementedError: Real repository not yet implemented');
   }
 
-  async delete(id: string): Promise<Either<Failure, void>> { // eslint-disable-line @typescript-eslint/no-unused-vars
+  async delete(_id: string): Promise<Either<Failure, void>> {
     throw new Error('UnimplementedError: Real repository not yet implemented');
   }
 

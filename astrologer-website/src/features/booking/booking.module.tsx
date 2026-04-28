@@ -13,7 +13,6 @@ export { useBookingRepository, useBookingList, useBookingById, useBookingMutatio
 export { BookingRepositoryProvider, useBookingRepositoryContext, createDefaultBookingRepository } from './presentation/booking.repository-context';
 
 import { BookingListPage } from './presentation/pages/booking-list-page';
-import { BookingDetailsPage } from './presentation/pages/booking-details-page';
 
 export const BookingDescriptor = {
   id: 'booking',
@@ -25,9 +24,5 @@ export const BookingRoutes = [
   {
     path: '/booking',
     element: <BookingListPage />,
-  },
-  {
-    path: '/booking/:id',
-    element: <BookingDetailsPage />,
   },
 ];

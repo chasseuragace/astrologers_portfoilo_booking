@@ -13,6 +13,9 @@ export function ProfileFormDialog({ isOpen, entity, onClose, onSave }: ProfileFo
   const [formData, setFormData] = useState<ProfileEntity>({
     id: '',
     name: '',
+    title: '',
+    location: '',
+    phone: '',
     description: '',
   });
 
@@ -27,6 +30,9 @@ export function ProfileFormDialog({ isOpen, entity, onClose, onSave }: ProfileFo
       setFormData({
         id: '',
         name: '',
+        title: '',
+        location: '',
+        phone: '',
         description: '',
       });
     }

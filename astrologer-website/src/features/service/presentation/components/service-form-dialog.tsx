@@ -13,7 +13,9 @@ export function ServiceFormDialog({ isOpen, entity, onClose, onSave }: ServiceFo
   const [formData, setFormData] = useState<ServiceEntity>({
     id: '',
     name: '',
+    title: '',
     description: '',
+    active: true,
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -27,7 +29,9 @@ export function ServiceFormDialog({ isOpen, entity, onClose, onSave }: ServiceFo
       setFormData({
         id: '',
         name: '',
+        title: '',
         description: '',
+        active: true,
       });
     }
     setErrors({});

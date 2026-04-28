@@ -5,7 +5,8 @@ import { AboutPage } from './pages/public/AboutPage'
 import { ServicesPage } from './pages/public/ServicesPage'
 import { CalendarPage } from './pages/public/CalendarPage'
 import { ContactPage } from './pages/public/ContactPage'
-import { BookingPage } from './pages/public/BookingPage'
+
+import { CustomerBookingsPage } from './pages/public/CustomerBookingsPage'
 import { AdminLoginPage } from './pages/admin/AdminLoginPage'
 import { AdminDashboardPage } from './pages/admin/AdminDashboardPage'
 import './index.css'
@@ -41,9 +42,10 @@ const router = createBrowserRouter([
     path: '/contact',
     element: <ContactPage />,
   },
+
   {
-    path: '/booking',
-    element: <BookingPage />,
+    path: '/my-bookings',
+    element: <CustomerBookingsPage />,
   },
   {
     path: '/admin',

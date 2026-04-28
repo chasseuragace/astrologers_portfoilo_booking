@@ -1,22 +1,24 @@
 import { Navigation } from '../../components/Navigation'
 import { Footer } from '../../components/Footer'
 import { QRCodeSVG } from 'qrcode.react'
-import { Phone, MapPin, Mail } from 'lucide-react'
+import { Phone, MapPin, Mail, Globe } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 
 export function ContactPage() {
   const { t } = useTranslation()
 
   const vCardData = `BEGIN:VCARD
-VERSION:3.0
+VERSION:4.0
 FN:Shaligram Dahal
-TITLE:Astrologer / Guru
+N:Dahal;Shaligram;;;
+TITLE:Astrologer & Spiritual Guru
 ORG:Shaligram Dahal Astrology
-TEL;TYPE=CELL:9800000000
-EMAIL:shaligram@example.com
-ADR;TYPE=WORK:;;Biratnagar;;Nepal
-URL:https://facebook.com/shaligramdahal
-NOTE:Renowned astrologer and spiritual guide specializing in Vedic astrology, vastu, and ritual ceremonies.
+TEL;TYPE=CELL;VALUE=uri:tel:+977-9842081092
+EMAIL:shaligramdahal2012@gmail.com
+ADR;TYPE=WORK:;;Biratnagar Pitchara;;Nepal
+URL:https://shaligram-guru.netlify.app
+X-SOCIALPROFILE;TYPE=facebook:https://www.facebook.com/shaligram.dahal.58
+NOTE:Renowned astrologer specializing in Vedic astrology, vastu consultation, and ritual ceremonies.
 END:VCARD`
 
   return (
@@ -50,7 +52,9 @@ END:VCARD`
                   </div>
                   <div>
                     <h3 className="font-display font-semibold text-lg text-amber-100">Phone</h3>
-                    <p className="text-amber-200/70">9800000000</p>
+                    <a href="tel:+977-9842081092" className="text-gold-400 hover:text-gold-300 transition-colors">
+                      +977-9842081092
+                    </a>
                   </div>
                 </div>
 
@@ -60,7 +64,9 @@ END:VCARD`
                   </div>
                   <div>
                     <h3 className="font-display font-semibold text-lg text-amber-100">Email</h3>
-                    <p className="text-amber-200/70">shaligram@example.com</p>
+                    <a href="mailto:shaligramdahal2012@gmail.com" className="text-gold-400 hover:text-gold-300 transition-colors">
+                      shaligramdahal2012@gmail.com
+                    </a>
                   </div>
                 </div>
 
@@ -69,8 +75,20 @@ END:VCARD`
                     <MapPin className="w-6 h-6 text-cosmic-950" />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-lg text-amber-100">{t('about.location')}</h3>
-                    <p className="text-amber-200/70">{t('footer.location')}</p>
+                    <h3 className="font-display font-semibold text-lg text-amber-100">Location</h3>
+                    <p className="text-amber-200/70">Biratnagar Pitchara, Nepal</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Globe className="w-6 h-6 text-cosmic-950" />
+                  </div>
+                  <div>
+                    <h3 className="font-display font-semibold text-lg text-amber-100">Website</h3>
+                    <a href="https://shaligram-guru.netlify.app" target="_blank" rel="noopener noreferrer" className="text-gold-400 hover:text-gold-300 transition-colors">
+                      shaligram-guru.netlify.app
+                    </a>
                   </div>
                 </div>
 
@@ -83,12 +101,12 @@ END:VCARD`
                   <div>
                     <h3 className="font-display font-semibold text-lg text-amber-100">Facebook</h3>
                     <a
-                      href="https://facebook.com/shaligramdahal"
+                      href="https://www.facebook.com/shaligram.dahal.58"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-gold-400 hover:text-gold-300 transition-colors"
                     >
-                      facebook.com/shaligramdahal
+                      facebook.com/shaligram.dahal.58
                     </a>
                   </div>
                 </div>
@@ -101,14 +119,28 @@ END:VCARD`
                   Scan to save contact to your phone
                 </p>
                 <div className="bg-white p-4 rounded-lg">
-                  <QRCodeSVG value={vCardData} size={180} />
+                  <QRCodeSVG 
+                    value={vCardData} 
+                    size={200} 
+                    level="H"
+                    imageSettings={{
+                      src: '/ganpati.png',
+                      height: 40,
+                      width: 40,
+                      excavate: true,
+                    }}
+                  />
                 </div>
+                <p className="text-xs text-amber-200/50 mt-4 text-center">
+                  vCard QR Code
+                </p>
               </div>
             </div>
 
             <div className="mt-8 p-6 bg-cosmic-900/50 rounded-xl border border-gold-400/20">
               <p className="text-center text-amber-200/70">
-                <strong className="text-gold-400">{t('home.bookAppointment')}:</strong> {t('home.contactDesc')}
+                <strong className="text-gold-400">Ready to book an appointment?</strong> Visit the{' '}
+                <a href="/calendar" className="text-gold-400 hover:text-gold-300 transition-colors underline">calendar page</a> to schedule your consultation.
               </p>
             </div>
           </div>

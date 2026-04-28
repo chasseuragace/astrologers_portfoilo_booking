@@ -8,7 +8,6 @@ export type BookingModel = {
   email?: string;
   serviceType: string;
   nepaliDate: string;
-  time: string;
   location: string;
   description?: string;
   status: string;
@@ -26,7 +25,6 @@ export function toEntity(model: BookingModel): BookingEntity {
     email: model.email,
     serviceType: model.serviceType,
     nepaliDate: model.nepaliDate,
-    time: model.time,
     location: model.location,
     description: model.description,
     status: model.status as BookingStatus,
@@ -45,7 +43,6 @@ export function fromModel(entity: BookingEntity): BookingModel {
     email: entity.email,
     serviceType: entity.serviceType,
     nepaliDate: entity.nepaliDate,
-    time: entity.time,
     location: entity.location,
     description: entity.description,
     status: entity.status,
@@ -64,7 +61,6 @@ export function dummyBooking(id: string = '1'): BookingModel {
     email: `client${id}@example.com`,
     serviceType: 'Kundali Consultation',
     nepaliDate: '2081/05/12',
-    time: '10:00 AM',
     location: 'Biratnagar',
     description: 'General consultation',
     status: 'Pending',

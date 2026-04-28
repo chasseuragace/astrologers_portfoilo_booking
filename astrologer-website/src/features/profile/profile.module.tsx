@@ -15,6 +15,7 @@ export * from './presentation/components/profile-form-dialog';
 
 import { ProfileListPage } from './presentation/pages/profile-list-page';
 import { ProfileDetailsPage } from './presentation/pages/profile-details-page';
+import { ProfileRepositoryProvider, createDefaultProfileRepository } from './presentation/profile.repository-context';
 
 export const ProfileDescriptor = {
   id: 'profile',

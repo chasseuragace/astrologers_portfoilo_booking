@@ -14,6 +14,7 @@ export interface ServiceModel {
 export function toEntity(model: ServiceModel): ServiceEntity {
   return {
     id: model.id,
+    name: model.title,
     title: model.title,
     description: model.description,
     price: model.price,

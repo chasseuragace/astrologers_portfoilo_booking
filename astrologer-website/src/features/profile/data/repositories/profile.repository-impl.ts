@@ -10,19 +10,19 @@ export class ProfileRepositoryImpl implements ProfileRepository {
     throw new Error('UnimplementedError: Real repository not yet implemented');
   }
 
-  async getById(id: string): Promise<Either<Failure, ProfileEntity>> { // eslint-disable-line @typescript-eslint/no-unused-vars
+  async getById(_id: string): Promise<Either<Failure, ProfileEntity>> {
     throw new Error('UnimplementedError: Real repository not yet implemented');
   }
 
-  async add(entity: ProfileEntity): Promise<Either<Failure, ProfileEntity>> { // eslint-disable-line @typescript-eslint/no-unused-vars
+  async add(_entity: ProfileEntity): Promise<Either<Failure, ProfileEntity>> {
     throw new Error('UnimplementedError: Real repository not yet implemented');
   }
 
-  async update(entity: ProfileEntity): Promise<Either<Failure, ProfileEntity>> { // eslint-disable-line @typescript-eslint/no-unused-vars
+  async update(_entity: ProfileEntity): Promise<Either<Failure, ProfileEntity>> {
     throw new Error('UnimplementedError: Real repository not yet implemented');
   }
 
-  async delete(id: string): Promise<Either<Failure, void>> { // eslint-disable-line @typescript-eslint/no-unused-vars
+  async delete(_id: string): Promise<Either<Failure, void>> {
     throw new Error('UnimplementedError: Real repository not yet implemented');
   }
 

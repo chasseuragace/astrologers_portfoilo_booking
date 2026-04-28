@@ -2,6 +2,7 @@
 /// framework dependencies.
 export interface ServiceEntity {
   readonly id: string;
+  readonly name: string;
   readonly title: string;
   readonly description?: string;
   readonly price?: string;
@@ -12,6 +13,7 @@ export interface ServiceEntity {
 
 export class ServiceEntityClass implements ServiceEntity {
   readonly id: string;
+  readonly name: string;
   readonly title: string;
   readonly description?: string;
   readonly price?: string;
@@ -21,6 +23,7 @@ export class ServiceEntityClass implements ServiceEntity {
 
   constructor(data: ServiceEntity) {
     this.id = data.id;
+    this.name = data.name;
     this.title = data.title;
     this.description = data.description;
     this.price = data.price;
@@ -32,6 +35,7 @@ export class ServiceEntityClass implements ServiceEntity {
   copyWith(partial: Partial<ServiceEntity>): ServiceEntity {
     return new ServiceEntityClass({
       id: partial.id ?? this.id,
+      name: partial.name ?? this.name,
       title: partial.title ?? this.title,
       description: partial.description ?? this.description,
       price: partial.price ?? this.price,
@@ -44,6 +48,7 @@ export class ServiceEntityClass implements ServiceEntity {
   equals(other: ServiceEntity): boolean {
     return (
       this.id === other.id &&
+      this.name === other.name &&
       this.title === other.title &&
       this.description === other.description &&
       this.price === other.price &&

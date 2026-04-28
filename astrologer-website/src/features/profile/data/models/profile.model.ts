@@ -63,6 +63,6 @@ export function dummyProfile(id: string = '1'): ProfileModel {
   };
 }
 
-export function dummyProfileList(): ProfileModel[] {
-  return [dummyProfile()];
+export function dummyProfileList(count: number = 1): ProfileModel[] {
+  return Array.from({ length: count }, (_, i) => dummyProfile(String(i + 1)));
 }
