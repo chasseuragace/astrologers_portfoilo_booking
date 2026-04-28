@@ -1,8 +1,7 @@
 /// Form dialog for adding/editing Booking.
 import React, { useState, useEffect } from 'react';
 import type { BookingEntity, BookingStatus } from '../../domain/entities/booking.entity';
-import { NepaliDatePicker } from 'nepali-datepicker-reactjs';
-import 'nepali-datepicker-reactjs/dist/index.css';
+import { NepaliDatePickerCustom } from '../../../../components/NepaliDatePickerCustom';
 
 interface BookingFormDialogProps {
   isOpen: boolean;
@@ -134,11 +133,10 @@ export function BookingFormDialog({ isOpen, entity, onClose, onSave }: BookingFo
 
             <div>
               <label className="mb-1 block text-sm font-medium">Nepali Date (BS) *</label>
-              <NepaliDatePicker
-                inputClassName="w-full rounded border px-3 py-2"
+              <NepaliDatePickerCustom
                 value={formData.nepaliDate || ''}
                 onChange={(date) => setFormData({ ...formData, nepaliDate: date })}
-                className="w-full"
+                placeholder="Select a date"
               />
               {errors.nepaliDate && <p className="mt-1 text-sm text-red-500">{errors.nepaliDate}</p>}
             </div>

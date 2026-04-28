@@ -1,0 +1,17 @@
+# Dart/Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+
+# Dependencies
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+
+# Logs
+*.log

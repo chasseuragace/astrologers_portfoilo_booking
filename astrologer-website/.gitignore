@@ -25,3 +25,8 @@ dist-ssr
 
 # Environment variables
 .env
+
+# Dart/Flutter
+.dart_tool/
+.packages
+build/

@@ -4,8 +4,7 @@ import { useState } from 'react'
 import { useBookingMutations } from '../../features/booking/presentation/hooks/booking.hooks'
 import type { BookingEntity } from '../../features/booking/domain/entities/booking.entity'
 import NepaliDate from 'nepali-date-converter'
-import { NepaliDatePicker } from 'nepali-datepicker-reactjs'
-import 'nepali-datepicker-reactjs/dist/index.css'
+import { NepaliDatePickerCustom } from '../../components/NepaliDatePickerCustom'
 
 export function BookingPage() {
   const { add } = useBookingMutations()
@@ -51,7 +50,7 @@ export function BookingPage() {
           phone: '',
           email: '',
           serviceTypes: [],
-          nepaliDate: '',
+          nepaliDate: new NepaliDate().format('YYYY/MM/DD'),
           location: '',
           description: ''
         })
@@ -177,11 +176,10 @@ export function BookingPage() {
                 <label htmlFor="nepaliDate" className="block text-sm font-medium mb-2 text-amber-100">
                   Nepali Date (BS) *
                 </label>
-                <NepaliDatePicker
-                  inputClassName="w-full px-4 py-3 border border-gold-400/30 rounded-lg bg-cosmic-900/50 text-amber-100 placeholder-amber-200/40 focus:border-gold-400 focus:outline-none transition-colors"
+                <NepaliDatePickerCustom
                   value={formData.nepaliDate}
                   onChange={(date) => setFormData({ ...formData, nepaliDate: date })}
-                  className="w-full"
+                  placeholder="Select a date"
                 />
                 <p className="text-xs text-amber-200/50 mt-1">Bikram Sambat calendar</p>
               </div>

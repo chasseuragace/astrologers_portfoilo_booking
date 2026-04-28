@@ -3,8 +3,7 @@ import { Footer } from '../../components/Footer'
 import { useState, useMemo } from 'react'
 import { useBookingList } from '../../features/booking/presentation/hooks/booking.hooks'
 import { Calendar, ChevronLeft, ChevronRight, Filter } from 'lucide-react'
-import { NepaliDatePicker } from 'nepali-datepicker-reactjs'
-import 'nepali-datepicker-reactjs/dist/index.css'
+import { NepaliDatePickerCustom } from '../../components/NepaliDatePickerCustom'
 
 export function CustomerBookingsPage() {
   const { data: bookingsData, isLoading, error } = useBookingList()
@@ -136,10 +135,10 @@ export function CustomerBookingsPage() {
               {/* Date Filter */}
               <div className="flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-gold-400" />
-                <NepaliDatePicker
-                  inputClassName="bg-cosmic-900/50 border border-gold-400/30 rounded-lg px-4 py-2 text-amber-100 placeholder-amber-200/50 focus:outline-none focus:border-gold-400"
+                <NepaliDatePickerCustom
                   value={selectedDate}
                   onChange={(date) => handleDateFilterChange(date)}
+                  placeholder="Filter by date"
                   className="w-48"
                 />
                 {selectedDate && (
