@@ -24,7 +24,11 @@ jobs:
       - name: Install dependencies
         working-directory: astrologer-website
         run: npm ci
-        
+
+      - name: Validate translations
+        working-directory: astrologer-website
+        run: node scripts/validate-translations.js
+
       - name: Build
         working-directory: astrologer-website
         run: npm run build
