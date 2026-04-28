@@ -7,7 +7,6 @@ import { BookingFormDialog } from '../components/booking-form-dialog';
 import { Calendar, ChevronLeft, ChevronRight, Filter, X, Check } from 'lucide-react';
 import type { BookingStatus, BookingEntity } from '../../domain/entities/booking.entity';
 import { NepaliDatePickerCustom } from '../../../../components/NepaliDatePickerCustom';
-import NepaliDate from 'nepali-date-converter';
 
 export function BookingListPage() {
   const { data, isLoading, error, refetch } = useBookingList();
@@ -369,7 +368,7 @@ export function BookingListPage() {
         <BookingFormDialog
           isOpen={isFormOpen}
           onClose={() => setIsFormOpen(false)}
-          onSave={(entity) => {
+          onSave={() => {
             // add.mutate(entity);
             setIsFormOpen(false);
           }}

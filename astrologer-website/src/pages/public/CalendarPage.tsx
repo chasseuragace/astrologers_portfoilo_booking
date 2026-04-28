@@ -1,6 +1,5 @@
 import { Navigation } from '../../components/Navigation'
 import { Footer } from '../../components/Footer'
-import { Link } from 'react-router-dom'
 import { useState, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useBookingList, useBookingMutations } from '../../features/booking/presentation/hooks/booking.hooks'

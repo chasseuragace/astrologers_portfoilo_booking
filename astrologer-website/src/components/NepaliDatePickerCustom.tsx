@@ -51,13 +51,6 @@ export function NepaliDatePickerCustom({
     return monthDays - 1
   }
 
-  const getFirstDayOfMonth = (year: number, month: number) => {
-    // Get day of week for first day of month (0 = Sunday)
-    const d = new NepaliDate(year, month - 1, 1)
-    // NepaliDate uses different day numbering, so we calculate it properly
-    return 0 // Start from Sunday for simplicity
-  }
-
   const daysInMonth = getDaysInMonth(displayYear, displayMonth)
 
   const handlePrevMonth = (e: React.MouseEvent) => {
