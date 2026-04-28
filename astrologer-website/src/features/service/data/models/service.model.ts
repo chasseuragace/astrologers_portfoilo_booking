@@ -53,7 +53,7 @@ export function dummyService(id: string = '1'): ServiceModel {
       titleEn: 'Kundali / Horoscope Consultation',
       titleNp: 'कुण्डली / राशिफल परामर्श',
       descriptionEn: 'Detailed analysis of your birth chart to provide insights into your personality, life path, and future events. Includes marriage, foreign travel, business predictions.',
-      descriptionNp: 'तपाईंको व्यक्तित्व, जीवन पथ, र भविष्यको घटनाहरूमा अन्तर्दृष्टि प्रदान गर्न तपाईंको जन्म कुण्डलीको विस्तृत विश्लेषण। विवाह, बिदेश यात्रा, व्यापारको फलादेश समावेश छन्।',
+      descriptionNp: 'तपाईंको व्यक्तित्व, जीवन पथ, र भविष्यको घटनाहरूमा अन्तर्दृष्टि प्रदान गर्न तपाईंको जन्म कुण्डलीको विस्तृत विश्लेषण। विवाह, बिदेश यात्रा, औदाई, व्यापारको फलादेश समावेश छन्।',
     },
     {
       titleEn: 'Vastu Consultation',
