@@ -12,14 +12,24 @@ export function HomePage() {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-cosmic-gradient">
+          {/* Cover image background */}
+          <div className="absolute inset-0 opacity-40">
+            <img
+              src="/cover.jpeg"
+              alt="Background"
+              className="w-full h-full object-cover object-center md:object-top"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-cosmic-950 via-cosmic-950/50 to-transparent"></div>
+          </div>
+
           {/* Animated star field overlay */}
           <div className="absolute inset-0 opacity-30">
             <div className="absolute inset-0 bg-star-field animate-pulse"></div>
           </div>
-          
+
           {/* Sacred pattern overlay */}
           <div className="absolute inset-0 bg-sacred-pattern"></div>
-          
+
           {/* Floating orbs */}
           <div className="absolute top-20 left-20 w-32 h-32 bg-gold-400/10 rounded-full blur-3xl animate-float"></div>
           <div className="absolute bottom-32 right-32 w-48 h-48 bg-mystic-purple/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>

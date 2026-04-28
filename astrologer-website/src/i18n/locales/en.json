@@ -42,6 +42,36 @@
     "languages": "Languages I Speak",
     "languagesValue": "Nepali, Hindi, English"
   },
+  "calendar": {
+    "scheduledBookings": "Scheduled Bookings",
+    "noBookings": "No bookings scheduled for this month.",
+    "bookAppointment": "Book an Appointment",
+    "fillForm": "Fill out the form below to request an appointment",
+    "fullName": "Full Name",
+    "phoneNumber": "Phone Number",
+    "email": "Email",
+    "serviceTypes": "Service Types (Select one or more)",
+    "selectDate": "Select Date",
+    "location": "Location",
+    "description": "Additional Details / Message",
+    "submit": "Submit Booking Request",
+    "optional": "Optional",
+    "bikramSambat": "Bikram Sambat calendar",
+    "selectService": "Please select at least one service",
+    "note": "Note",
+    "noteText": "Your booking request will be reviewed. You will receive confirmation via phone or email once your appointment is approved.",
+    "previous": "← Previous",
+    "next": "Next →",
+    "status": {
+      "approved": "Approved",
+      "pending": "Pending",
+      "rejected": "Rejected"
+    },
+    "alert": {
+      "success": "Booking request submitted successfully! I will contact you shortly.",
+      "error": "Failed to submit booking"
+    }
+  },
   "services": {
     "title": "Services",
     "description": "Comprehensive astrological and spiritual services to guide you on your life's journey. Ancient wisdom meets modern understanding.",

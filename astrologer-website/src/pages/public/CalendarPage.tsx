@@ -103,7 +103,7 @@ export function CalendarPage() {
 
     add.mutate(booking, {
       onSuccess: () => {
-        alert('Booking request submitted successfully! I will contact you shortly.')
+        alert(t('calendar.alert.success'))
         setFormData({
           name: '',
           phone: '',
@@ -115,7 +115,7 @@ export function CalendarPage() {
         })
       },
       onError: (error) => {
-        alert(`Failed to submit booking: ${error.message}`)
+        alert(`${t('calendar.alert.error')}: ${error.message}`)
       }
     })
   }
@@ -169,7 +169,7 @@ export function CalendarPage() {
                 onClick={prevMonth}
                 className="px-6 py-3 bg-cosmic-900/50 border border-gold-400/30 text-amber-100 font-display font-semibold rounded-lg hover:bg-gold-400/10 hover:border-gold-400 transition-all"
               >
-                ← Previous
+                {t('calendar.previous')}
               </button>
               <h2 className="text-2xl md:text-3xl font-display font-bold text-gold-400">
                 {nepaliMonths[currentMonth - 1]} {currentYear} (Bikram Sambat)
@@ -178,7 +178,7 @@ export function CalendarPage() {
                 onClick={nextMonth}
                 className="px-6 py-3 bg-cosmic-900/50 border border-gold-400/30 text-amber-100 font-display font-semibold rounded-lg hover:bg-gold-400/10 hover:border-gold-400 transition-all"
               >
-                Next →
+                {t('calendar.next')}
               </button>
             </div>
 
@@ -222,9 +222,9 @@ export function CalendarPage() {
 
           {/* Bookings List */}
           <div className="bg-cosmic-800/40 backdrop-blur-sm p-6 rounded-2xl border border-gold-400/20 mb-8">
-            <h3 className="text-2xl md:text-3xl font-display font-bold mb-6 text-gold-400">Scheduled Bookings</h3>
+            <h3 className="text-2xl md:text-3xl font-display font-bold mb-6 text-gold-400">{t('calendar.scheduledBookings')}</h3>
             {bookings.length === 0 ? (
-              <p className="text-amber-200/60">No bookings scheduled for this month.</p>
+              <p className="text-amber-200/60">{t('calendar.noBookings')}</p>
             ) : (
               <div className="space-y-4">
                 {bookings.map((booking, index) => (
@@ -247,14 +247,14 @@ export function CalendarPage() {
           {/* Booking Form */}
           <div className="bg-cosmic-800/40 backdrop-blur-sm p-8 rounded-2xl border border-gold-400/20 mb-8">
             <div className="text-center mb-8">
-              <h3 className="text-3xl md:text-4xl font-display font-bold mb-2 text-gold-400">Book an Appointment</h3>
-              <p className="text-amber-200/70">Fill out the form below to request an appointment</p>
+              <h3 className="text-3xl md:text-4xl font-display font-bold mb-2 text-gold-400">{t('calendar.bookAppointment')}</h3>
+              <p className="text-amber-200/70">{t('calendar.fillForm')}</p>
             </div>
             
             <form onSubmit={handleSubmit} className="space-y-6" noValidate>
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2 text-amber-100">
-                  Full Name *
+                  {t('calendar.fullName')} *
                 </label>
                 <input
                   type="text"
@@ -270,7 +270,7 @@ export function CalendarPage() {
 
               <div>
                 <label htmlFor="phone" className="block text-sm font-medium mb-2 text-amber-100">
-                  Phone Number *
+                  {t('calendar.phoneNumber')} *
                 </label>
                 <input
                   type="tel"
@@ -286,7 +286,7 @@ export function CalendarPage() {
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium mb-2 text-amber-100">
-                  Email (Optional)
+                  {t('calendar.email')} ({t('calendar.optional')})
                 </label>
                 <input
                   type="email"
@@ -301,7 +301,7 @@ export function CalendarPage() {
 
               <div>
                 <label className="block text-sm font-medium mb-3 text-amber-100">
-                  Service Types * (Select one or more)
+                  {t('calendar.serviceTypes')} *
                 </label>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {SERVICE_NAMES.map((service) => (
@@ -324,25 +324,25 @@ export function CalendarPage() {
                   ))}
                 </div>
                 {formData.serviceTypes.length === 0 && (
-                  <p className="text-sm text-gold-400/70 mt-2">Please select at least one service</p>
+                  <p className="text-sm text-gold-400/70 mt-2">{t('calendar.selectService')}</p>
                 )}
               </div>
 
               <div>
                 <label htmlFor="nepaliDate" className="block text-sm font-medium mb-2 text-amber-100">
-                  Nepali Date (BS) *
+                  {t('calendar.selectDate')} (BS) *
                 </label>
                 <NepaliDatePickerCustom
                   value={formData.nepaliDate}
                   onChange={(date) => setFormData({ ...formData, nepaliDate: date })}
                   placeholder="Select a date"
                 />
-                <p className="text-xs text-amber-200/50 mt-1">Bikram Sambat calendar</p>
+                <p className="text-xs text-amber-200/50 mt-1">{t('calendar.bikramSambat')}</p>
               </div>
 
               <div>
                 <label htmlFor="location" className="block text-sm font-medium mb-2 text-amber-100">
-                  Location *
+                  {t('calendar.location')} *
                 </label>
                 <input
                   type="text"
@@ -358,7 +358,7 @@ export function CalendarPage() {
 
               <div>
                 <label htmlFor="description" className="block text-sm font-medium mb-2 text-amber-100">
-                  Additional Details / Message
+                  {t('calendar.description')}
                 </label>
                 <textarea
                   id="description"
@@ -376,14 +376,13 @@ export function CalendarPage() {
                 disabled={formData.serviceTypes.length === 0}
                 className="w-full bg-gradient-to-r from-gold-500 to-gold-600 text-cosmic-950 px-6 py-4 rounded-lg font-display font-semibold hover:shadow-2xl hover:shadow-gold-400/30 hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
-                Submit Booking Request
+                {t('calendar.submit')}
               </button>
             </form>
 
             <div className="mt-6 p-4 bg-cosmic-900/50 rounded-lg border border-gold-400/20">
               <p className="text-sm text-amber-200/70">
-                <strong className="text-gold-400">Note:</strong> Your booking request will be reviewed. 
-                You will receive confirmation via phone or email once your appointment is approved.
+                <strong className="text-gold-400">{t('calendar.note')}:</strong> {t('calendar.noteText')}
               </p>
             </div>
           </div>

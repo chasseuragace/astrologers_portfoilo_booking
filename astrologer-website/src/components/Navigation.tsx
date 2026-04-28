@@ -24,7 +24,7 @@ export function Navigation() {
   ]
 
   return (
-    <nav className="bg-cosmic-950/80 backdrop-blur-md border-b border-gold-400/20 sticky top-0 z-50">
+    <nav className="bg-cosmic-950/60 backdrop-blur-xl border-b border-gold-400/20 fixed top-0 left-0 right-0 z-50 shadow-lg shadow-black/20">
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <Link to="/" className="text-xl md:text-2xl lg:text-3xl font-display font-bold text-gold-400 hover:text-gold-300 transition-colors flex items-center gap-3">
