@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-cosmic-950 text-amber-100;
+  }
+  
+  body[data-lang="np"] {
+    font-size: 1.1rem;
+  }
+  
+  body[data-lang="np"] * {
+    letter-spacing: 0.02em;
+  }
+}
