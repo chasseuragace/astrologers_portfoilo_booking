@@ -6,12 +6,13 @@ import { useBookingList, useBookingMutations } from '../../features/booking/pres
 import { NepaliDatePickerCustom } from '../../components/NepaliDatePickerCustom'
 import type { BookingEntity } from '../../features/booking/domain/entities/booking.entity'
 import NepaliDate from 'nepali-date-converter'
+import { SERVICE_NAMES } from '../../constants/services'
 
 export function CalendarPage() {
   const { t } = useTranslation()
   const { data: bookingsData, isLoading, error } = useBookingList()
   const { add } = useBookingMutations()
-  
+
   // Booking form state
   const [formData, setFormData] = useState({
     name: '',
@@ -22,15 +23,6 @@ export function CalendarPage() {
     location: '',
     description: ''
   })
-  
-  const services = [
-    'Kundali / Horoscope Consultation',
-    'Vastu Consultation',
-    'Shraddha / Ritual Guidance',
-    'Puja Consultation',
-    'Marriage/Date/Muhurat Consultation',
-    'General Astrology Consultation'
-  ]
   
   // Get current Nepali date for initial state
   const now = useMemo(() => new NepaliDate(), [])
@@ -90,19 +82,8 @@ export function CalendarPage() {
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
-
-  const toggleService = (service: string) => {
-    setFormData(prev => ({
-      ...prev,
-      serviceTypes: prev.serviceTypes.includes(service)
-        ? prev.serviceTypes.filter(s => s !== service)
-        : [...prev.serviceTypes, service]
-    }))
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -322,20 +303,24 @@ export function CalendarPage() {
                 <label className="block text-sm font-medium mb-3 text-amber-100">
                   Service Types * (Select one or more)
                 </label>
-                <div className="flex flex-wrap gap-3">
-                  {services.map(service => (
-                    <button
-                      key={service}
-                      type="button"
-                      onClick={() => toggleService(service)}
-                      className={`px-4 py-2 rounded-full font-display font-medium transition-all duration-300 ${
-                        formData.serviceTypes.includes(service)
-                          ? 'bg-gradient-to-r from-gold-500 to-gold-600 text-cosmic-950 shadow-lg shadow-gold-400/20'
-                          : 'bg-cosmic-900/50 border border-gold-400/30 text-amber-100 hover:border-gold-400 hover:bg-gold-400/10'
-                      }`}
-                    >
-                      {service}
-                    </button>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  {SERVICE_NAMES.map((service) => (
+                    <label key={service} className="flex items-center space-x-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        value={service}
+                        checked={formData.serviceTypes.includes(service)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setFormData({ ...formData, serviceTypes: [...formData.serviceTypes, service] })
+                          } else {
+                            setFormData({ ...formData, serviceTypes: formData.serviceTypes.filter(s => s !== service) })
+                          }
+                        }}
+                        className="w-4 h-4 accent-gold-400"
+                      />
+                      <span className="text-amber-200/70">{service}</span>
+                    </label>
                   ))}
                 </div>
                 {formData.serviceTypes.length === 0 && (

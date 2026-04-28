@@ -1,14 +1,14 @@
-import { Navigation } from '../../components/Navigation'
-import { Footer } from '../../components/Footer'
-import { Link } from 'react-router-dom'
+import { PageLayout } from '../../components/layout/PageLayout'
+import { ServiceCard } from '../../components/ui/ServiceCard'
+import { CtaButton } from '../../components/ui/CtaButton'
 import { useTranslation } from 'react-i18next'
+import { SERVICES } from '../../constants/services'
 
 export function HomePage() {
   const { t } = useTranslation()
 
   return (
-    <div className="min-h-screen flex flex-col bg-cosmic-950 font-body">
-      <Navigation />
+    <PageLayout>
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-cosmic-gradient">
@@ -53,19 +53,8 @@ export function HomePage() {
               </p>
               
               <div className="flex gap-6 justify-center flex-wrap animate-slide-up" style={{ animationDelay: '0.8s' }}>
-                <Link
-                  to="/booking"
-                  className="group relative px-10 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-cosmic-950 font-display font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-gold-500/30 hover:scale-105"
-                >
-                  <span className="relative z-10">{t('home.bookAppointment')}</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-gold-400 to-gold-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </Link>
-                <Link
-                  to="/services"
-                  className="group relative px-10 py-4 border-2 border-gold-400/50 text-gold-400 font-display font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:bg-gold-400/10 hover:scale-105"
-                >
-                  <span className="relative z-10">{t('home.ourServices')}</span>
-                </Link>
+                <CtaButton to="/calendar">{t('home.bookAppointment')}</CtaButton>
+                <CtaButton to="/services" variant="outline">{t('home.ourServices')}</CtaButton>
               </div>
             </div>
           </div>
@@ -92,46 +81,22 @@ export function HomePage() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-              {[
-                {
-                  title: t('home.kundaliTitle'),
-                  description: t('home.kundaliDesc'),
-                  num: '01'
-                },
-                {
-                  title: t('home.vastuTitle'),
-                  description: t('home.vastuDesc'),
-                  num: '02'
-                },
-                {
-                  title: t('home.ritualTitle'),
-                  description: t('home.ritualDesc'),
-                  num: '03'
-                }
-              ].map((service, index) => (
-                <div 
-                  key={index}
-                  className="group relative bg-cosmic-800/50 backdrop-blur-sm p-8 rounded-2xl border border-gold-400/20 hover:border-gold-400/50 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-gold-400/10"
-                  style={{ animationDelay: `${index * 0.2}s` }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-gold-400/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <div className="relative z-10">
-                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-gold-400/20 to-gold-600/20 border border-gold-400/30 flex items-center justify-center text-gold-400 font-display font-bold text-lg mb-4">{service.num}</div>
-                    <h3 className="text-2xl font-display font-bold mb-3 text-amber-100">{service.title}</h3>
-                    <p className="text-amber-200/60 leading-relaxed">{service.description}</p>
-                  </div>
-                </div>
+              {SERVICES.slice(0, 3).map((service, index) => (
+                <ServiceCard
+                  key={service.num}
+                  num={service.num}
+                  title={t(service.titleKey)}
+                  description={t(service.descKey)}
+                  index={index}
+                  compact
+                />
               ))}
             </div>
-            
+
             <div className="text-center mt-12">
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 text-gold-400 hover:text-gold-300 font-display font-semibold text-lg transition-colors group"
-              >
-                <span>{t('home.exploreServices')}</span>
-                <span className="group-hover:translate-x-2 transition-transform">→</span>
-              </Link>
+              <CtaButton to="/services" variant="outline">
+                {t('home.exploreServices')}
+              </CtaButton>
             </div>
           </div>
         </section>
@@ -154,18 +119,14 @@ export function HomePage() {
               <p className="text-xl text-amber-200/70 mb-10 leading-relaxed">
                 {t('home.calendarDesc')}
               </p>
-              <Link
-                to="/calendar"
-                className="inline-block px-10 py-4 bg-gradient-to-r from-mystic-purple to-mystic-indigo text-amber-100 font-display font-semibold rounded-lg transition-all duration-300 hover:shadow-2xl hover:shadow-mystic-purple/30 hover:scale-105"
-              >
+              <CtaButton to="/calendar" variant="mystic">
                 {t('home.viewCalendar')}
-              </Link>
+              </CtaButton>
             </div>
           </div>
         </section>
 
       </main>
-      <Footer />
-    </div>
+    </PageLayout>
   )
 }
