@@ -1,0 +1,37 @@
+# Shaligram Dahal - Astrologer & Spiritual Guide
+
+> Professional Vedic astrologer and spiritual guide specializing in Kundali analysis, predictions, Vastu consultation, sacred rituals, and Karmakanda. Based in Biratnagar, Nepal.
+
+## Services
+
+- [Kundali / Horoscope Consultation](/services): Detailed birth chart analysis for personality, life path, and future events including marriage predictions, foreign travel, business forecasts, and ritual guidance
+- [Vastu Consultation](/services): Expert guidance on Vastu principles for homes, offices, and business premises to ensure harmony and prosperity
+- [Shraddha / Ritual Guidance](/services): Complete guidance for Shraddha ceremonies and important religious rituals with proper procedures and timings
+- [Puja Consultation](/services): Guidance for various pujas and religious ceremonies - which pujas to perform and how to conduct them properly
+- [Marriage/Date/Muhurat Consultation](/services): Find auspicious dates (muhurat) for marriage, housewarming, business startup, and important life events
+- [Birth Chart Creation](/services): Create personalized birth charts based on birth date and time
+- [Guna Milan / Marriage Compatibility](/services): Kundali matching based on 36 gunas with detailed analysis of Ashtakoot, Nadi, Rashi, Gana, and other compatibility factors
+- [Brata Udhyapan & Puran Path](/services): Special guidance for Brata Udhyapan, Brata Pratishtha, Garud Puran, Chandi Path, Bhagavat Path, and Gita Path ceremonies
+- [Shanti Puja](/services): Special Shanti Puja for Moola Janit Dosha, Ashubha Nakshatra, Mangalika Yoga, and Ark Vivah/Kumbh Vivah
+
+## Booking
+
+- [Book Appointment](/calendar): Schedule appointments using the Nepali calendar system to find auspicious times
+- [My Bookings](/my-bookings): View and manage your booking requests and appointment status
+
+## About
+
+- [About Guru](/about): Learn about Guru Shaligram Dahal's background, experience, and spiritual journey
+- [Contact](/contact): Get in touch for appointments, inquiries, or spiritual guidance with location and contact information
+
+## Information
+
+- **Location**: Biratnagar 11, Pichara Chowk, Nepal
+- **Languages**: Nepali, Hindi, English
+- **Specializations**: Vedic Astrology, Kundali Analysis, Vastu Shastra, Karmakanda, Ritual Guidance
+- **Experience**: Years of dedicated practice in Vedic astrology and spiritual guidance
+
+## Technical
+
+- This is a bilingual (English/Nepali) React application built with Clean Architecture principles
+- Source code and technical documentation available in the project repository

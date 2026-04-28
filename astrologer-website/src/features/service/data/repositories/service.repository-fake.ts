@@ -13,7 +13,7 @@ export class ServiceRepositoryFake implements ServiceRepository {
     this.data = seedData;
   }
 
-  static seeded(count: number = 5): ServiceRepositoryFake {
+  static seeded(count: number = 9): ServiceRepositoryFake {
     const models = dummyServiceList(count);
     return new ServiceRepositoryFake(models.map(toEntity));
   }

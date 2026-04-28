@@ -1,5 +1,6 @@
 /// Data model for Booking with JSON serialization.
 import type { BookingEntity, BookingStatus } from '../../domain/entities/booking.entity';
+import { guruConfig } from '../../../../config/guru.config';
 
 export type BookingModel = {
   id: string;
@@ -61,7 +62,7 @@ export function dummyBooking(id: string = '1'): BookingModel {
     email: `client${id}@example.com`,
     serviceType: 'Kundali Consultation',
     nepaliDate: '2081/05/12',
-    location: 'Biratnagar',
+    location: guruConfig.contact.location,
     description: 'General consultation',
     status: 'Pending',
     duration: '30 minutes',

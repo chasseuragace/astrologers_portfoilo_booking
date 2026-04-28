@@ -25,4 +25,8 @@ export const BookingRoutes = [
     path: '/booking',
     element: <BookingListPage />,
   },
+  {
+    path: '/admin/bookings',
+    element: <BookingListPage />,
+  },
 ];

@@ -1,13 +1,12 @@
-import { Navigation } from '../../components/Navigation'
-import { Footer } from '../../components/Footer'
+import { Navigation } from '../../../../components/Navigation'
+import { Footer } from '../../../../components/Footer'
 import { useState, useMemo } from 'react'
-import { useBookingList } from '../../features/booking/presentation/hooks/booking.hooks'
+import { useBookingList } from '../../../booking/presentation/hooks/booking.hooks'
 import { Calendar, ChevronLeft, ChevronRight, Filter } from 'lucide-react'
-import { NepaliDatePickerCustom } from '../../components/NepaliDatePickerCustom'
+import { NepaliDatePickerCustom } from '../../../../components/NepaliDatePickerCustom'
 
 export function CustomerBookingsPage() {
   const { data: bookingsData, isLoading, error } = useBookingList()
-  const bookings = bookingsData || []
 
   // Filter states
   const [statusFilter, setStatusFilter] = useState<string>('all')
@@ -17,12 +16,13 @@ export function CustomerBookingsPage() {
 
   // Filter bookings
   const filteredBookings = useMemo(() => {
+    const bookings = bookingsData || []
     return bookings.filter(booking => {
       const statusMatch = statusFilter === 'all' || booking.status === statusFilter
       const dateMatch = !selectedDate || booking.nepaliDate === selectedDate
       return statusMatch && dateMatch
     })
-  }, [bookings, statusFilter, selectedDate])
+  }, [bookingsData, statusFilter, selectedDate])
 
   // Pagination
   const totalPages = Math.ceil(filteredBookings.length / itemsPerPage)

@@ -13,42 +13,32 @@ interface BookingFormDialogProps {
 const STATUS_OPTIONS: BookingStatus[] = ['Pending', 'Approved', 'Rejected', 'Completed', 'Cancelled'];
 
 export function BookingFormDialog({ isOpen, entity, onClose, onSave }: BookingFormDialogProps) {
-  const [formData, setFormData] = useState<BookingEntity>({
-    id: '',
-    name: '',
-    phone: '',
-    email: '',
-    serviceType: '',
-    nepaliDate: '',
-    location: '',
-    description: '',
-    status: 'Pending',
-    duration: '',
-    adminNote: '',
+  const [formData, setFormData] = useState<BookingEntity>(() => {
+    if (entity) {
+      return entity;
+    }
+    return {
+      id: '',
+      name: '',
+      phone: '',
+      email: '',
+      serviceType: '',
+      nepaliDate: '',
+      location: '',
+      description: '',
+      status: 'Pending',
+      duration: '',
+      adminNote: '',
+    };
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
-    if (entity) {
-      setFormData(entity);
-    } else {
-      setFormData({
-        id: '',
-        name: '',
-        phone: '',
-        email: '',
-        serviceType: '',
-        nepaliDate: '',
-        location: '',
-        description: '',
-        status: 'Pending',
-        duration: '',
-        adminNote: '',
-      });
-    }
     setErrors({});
-  }, [entity, isOpen]);
+  }, [isOpen]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const validate = (): boolean => {
     const newErrors: Record<string, string> = {};

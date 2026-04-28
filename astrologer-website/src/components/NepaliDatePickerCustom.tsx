@@ -20,21 +20,27 @@ export function NepaliDatePickerCustom({
   const [displayYear, setDisplayYear] = useState<number>(2083)
   const inputRef = useRef<HTMLInputElement>(null)
   const pickerRef = useRef<HTMLDivElement>(null)
+  const prevValueRef = useRef<string>(value)
 
-  // Parse current value
+  // Parse current value - only update when value changes externally
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
-    if (value) {
-      const parts = value.split('/')
-      if (parts.length === 3) {
-        setDisplayYear(parseInt(parts[0]))
-        setDisplayMonth(parseInt(parts[1]))
+    if (value !== prevValueRef.current) {
+      prevValueRef.current = value
+      if (value) {
+        const parts = value.split('/')
+        if (parts.length === 3) {
+          setDisplayYear(parseInt(parts[0]))
+          setDisplayMonth(parseInt(parts[1]))
+        }
+      } else {
+        const now = new NepaliDate()
+        setDisplayYear(now.getYear())
+        setDisplayMonth(now.getMonth() + 1)
       }
-    } else {
-      const now = new NepaliDate()
-      setDisplayYear(now.getYear())
-      setDisplayMonth(now.getMonth() + 1)
     }
   }, [value])
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const nepaliMonths = [
     'Baisakh', 'Jestha', 'Ashadh', 'Shrawan', 'Bhadra',

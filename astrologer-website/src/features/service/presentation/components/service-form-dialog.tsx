@@ -10,32 +10,29 @@ interface ServiceFormDialogProps {
 }
 
 export function ServiceFormDialog({ isOpen, entity, onClose, onSave }: ServiceFormDialogProps) {
-  const [formData, setFormData] = useState<ServiceEntity>({
-    id: '',
-    name: '',
-    title: '',
-    description: '',
-    active: true,
+  const [formData, setFormData] = useState<ServiceEntity>(() => {
+    if (entity) {
+      return entity;
+    }
+    return {
+      id: '',
+      name: '',
+      titleEn: '',
+      titleNp: '',
+      descriptionEn: '',
+      descriptionNp: '',
+      displayOrder: 0,
+      active: true,
+    };
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
-    if (entity) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setFormData(entity);
-    } else {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setFormData({
-        id: '',
-        name: '',
-        title: '',
-        description: '',
-        active: true,
-      });
-    }
     setErrors({});
-  }, [entity, isOpen]);
+  }, [isOpen]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const validate = (): boolean => {
     const newErrors: Record<string, string> = {};
@@ -96,10 +93,40 @@ export function ServiceFormDialog({ isOpen, entity, onClose, onSave }: ServiceFo
           </div>
 
           <div>
-            <label className="mb-1 block text-sm font-medium">Description</label>
+            <label className="mb-1 block text-sm font-medium">Title (English)</label>
+            <input
+              type="text"
+              value={formData.titleEn || ''}
+              onChange={(e) => setFormData({ ...formData, titleEn: e.target.value })}
+              className="w-full rounded border border-gray-300 px-3 py-2"
+            />
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium">Title (Nepali)</label>
+            <input
+              type="text"
+              value={formData.titleNp || ''}
+              onChange={(e) => setFormData({ ...formData, titleNp: e.target.value })}
+              className="w-full rounded border border-gray-300 px-3 py-2"
+            />
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium">Description (English)</label>
             <textarea
-              value={formData.description || ''}
-              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              value={formData.descriptionEn || ''}
+              onChange={(e) => setFormData({ ...formData, descriptionEn: e.target.value })}
+              rows={3}
+              className="w-full rounded border border-gray-300 px-3 py-2"
+            />
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium">Description (Nepali)</label>
+            <textarea
+              value={formData.descriptionNp || ''}
+              onChange={(e) => setFormData({ ...formData, descriptionNp: e.target.value })}
               rows={3}
               className="w-full rounded border border-gray-300 px-3 py-2"
             />

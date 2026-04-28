@@ -3,8 +3,11 @@
 export interface ServiceEntity {
   readonly id: string;
   readonly name: string;
-  readonly title: string;
-  readonly description?: string;
+  readonly titleEn: string;
+  readonly titleNp: string;
+  readonly descriptionEn: string;
+  readonly descriptionNp: string;
+  readonly displayOrder: number;
   readonly price?: string;
   readonly active: boolean;
   readonly createdAt?: Date;
@@ -14,8 +17,11 @@ export interface ServiceEntity {
 export class ServiceEntityClass implements ServiceEntity {
   readonly id: string;
   readonly name: string;
-  readonly title: string;
-  readonly description?: string;
+  readonly titleEn: string;
+  readonly titleNp: string;
+  readonly descriptionEn: string;
+  readonly descriptionNp: string;
+  readonly displayOrder: number;
   readonly price?: string;
   readonly active: boolean;
   readonly createdAt?: Date;
@@ -24,8 +30,11 @@ export class ServiceEntityClass implements ServiceEntity {
   constructor(data: ServiceEntity) {
     this.id = data.id;
     this.name = data.name;
-    this.title = data.title;
-    this.description = data.description;
+    this.titleEn = data.titleEn;
+    this.titleNp = data.titleNp;
+    this.descriptionEn = data.descriptionEn;
+    this.descriptionNp = data.descriptionNp;
+    this.displayOrder = data.displayOrder;
     this.price = data.price;
     this.active = data.active;
     this.createdAt = data.createdAt;
@@ -36,8 +45,11 @@ export class ServiceEntityClass implements ServiceEntity {
     return new ServiceEntityClass({
       id: partial.id ?? this.id,
       name: partial.name ?? this.name,
-      title: partial.title ?? this.title,
-      description: partial.description ?? this.description,
+      titleEn: partial.titleEn ?? this.titleEn,
+      titleNp: partial.titleNp ?? this.titleNp,
+      descriptionEn: partial.descriptionEn ?? this.descriptionEn,
+      descriptionNp: partial.descriptionNp ?? this.descriptionNp,
+      displayOrder: partial.displayOrder ?? this.displayOrder,
       price: partial.price ?? this.price,
       active: partial.active ?? this.active,
       createdAt: partial.createdAt ?? this.createdAt,
@@ -49,8 +61,11 @@ export class ServiceEntityClass implements ServiceEntity {
     return (
       this.id === other.id &&
       this.name === other.name &&
-      this.title === other.title &&
-      this.description === other.description &&
+      this.titleEn === other.titleEn &&
+      this.titleNp === other.titleNp &&
+      this.descriptionEn === other.descriptionEn &&
+      this.descriptionNp === other.descriptionNp &&
+      this.displayOrder === other.displayOrder &&
       this.price === other.price &&
       this.active === other.active &&
       this.createdAt?.getTime() === other.createdAt?.getTime() &&
@@ -59,6 +74,6 @@ export class ServiceEntityClass implements ServiceEntity {
   }
 
   toString(): string {
-    return `ServiceEntity(id: ${this.id}, title: ${this.title}, active: ${this.active})`;
+    return `ServiceEntity(id: ${this.id}, titleEn: ${this.titleEn}, active: ${this.active})`;
   }
 }

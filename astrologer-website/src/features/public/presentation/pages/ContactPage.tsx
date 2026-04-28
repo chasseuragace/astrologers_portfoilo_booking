@@ -1,26 +1,27 @@
-import { PageLayout } from '../../components/layout/PageLayout'
-import { PageHeader } from '../../components/layout/PageHeader'
-import { CosmicCard } from '../../components/ui/CosmicCard'
-import { ContactItem } from '../../components/ui/ContactItem'
+import { PageLayout } from '../../../../components/layout/PageLayout'
+import { PageHeader } from '../../../../components/layout/PageHeader'
+import { CosmicCard } from '../../../../components/ui/CosmicCard'
+import { ContactItem } from '../../../../components/ui/ContactItem'
 import { QRCodeSVG } from 'qrcode.react'
-import { MapPin, Globe } from 'lucide-react'
+import { MapPin, Globe, Navigation as NavIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { guruConfig } from '../../../../config/guru.config'
 
 export function ContactPage() {
   const { t } = useTranslation()
 
   const vCardData = `BEGIN:VCARD
 VERSION:4.0
-FN:Shaligram Dahal
-N:Dahal;Shaligram;;;
-TITLE:${t('vcard.title')}
-ORG:${t('vcard.org')}
-TEL;TYPE=CELL;VALUE=uri:tel:+977-9842081092
-EMAIL:shaligramdahal2012@gmail.com
-ADR;TYPE=WORK:;;Biratnagar Pitchara;;Nepal
-URL:https://shaligram-guru.netlify.app
-X-SOCIALPROFILE;TYPE=facebook:https://www.facebook.com/shaligram.dahal.58
-NOTE:${t('vcard.note')}
+FN:${guruConfig.vcard.firstName} ${guruConfig.vcard.lastName}
+N:${guruConfig.vcard.lastName};${guruConfig.vcard.firstName};;;
+TITLE:${guruConfig.vcard.title}
+ORG:${guruConfig.vcard.org}
+TEL;TYPE=CELL;VALUE=uri:tel:${guruConfig.contact.phone}
+EMAIL:${guruConfig.contact.email}
+ADR;TYPE=WORK:;;${guruConfig.contact.location};;Nepal
+URL:${guruConfig.contact.website}
+X-SOCIALPROFILE;TYPE=facebook:${guruConfig.contact.facebookUrl}
+NOTE:${guruConfig.vcard.note}
 END:VCARD`
 
   return (
@@ -37,24 +38,24 @@ END:VCARD`
               {/* Contact Information */}
               <div className="space-y-6">
                 <ContactItem label="Phone">
-                  <a href="tel:+977-9842081092" className="text-gold-400 hover:text-gold-300 transition-colors">
-                    +977-9842081092
+                  <a href={`tel:${guruConfig.contact.phone}`} className="text-gold-400 hover:text-gold-300 transition-colors">
+                    {guruConfig.contact.phone}
                   </a>
                 </ContactItem>
 
                 <ContactItem label="Email">
-                  <a href="mailto:shaligramdahal2012@gmail.com" className="text-gold-400 hover:text-gold-300 transition-colors">
-                    shaligramdahal2012@gmail.com
+                  <a href={`mailto:${guruConfig.contact.email}`} className="text-gold-400 hover:text-gold-300 transition-colors">
+                    {guruConfig.contact.email}
                   </a>
                 </ContactItem>
 
                 <ContactItem label="Location" icon={<MapPin className="w-6 h-6 text-cosmic-950" />}>
-                  <p className="text-amber-200/70">Biratnagar Pitchara, Nepal</p>
+                  <p className="text-amber-200/70">{guruConfig.contact.location}</p>
                 </ContactItem>
 
                 <ContactItem label="Website" icon={<Globe className="w-6 h-6 text-cosmic-950" />}>
-                  <a href="https://shaligram-guru.netlify.app" target="_blank" rel="noopener noreferrer" className="text-gold-400 hover:text-gold-300 transition-colors">
-                    shaligram-guru.netlify.app
+                  <a href={guruConfig.contact.website} target="_blank" rel="noopener noreferrer" className="text-gold-400 hover:text-gold-300 transition-colors">
+                    {guruConfig.contact.website.replace('https://', '')}
                   </a>
                 </ContactItem>
 
@@ -64,12 +65,12 @@ END:VCARD`
                   </svg>
                 }>
                   <a
-                    href="https://www.facebook.com/shaligram.dahal.58"
+                    href={guruConfig.contact.facebookUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gold-400 hover:text-gold-300 transition-colors"
                   >
-                    facebook.com/shaligram.dahal.58
+                    facebook.com/{guruConfig.contact.facebookHandle}
                   </a>
                 </ContactItem>
               </div>
@@ -86,7 +87,7 @@ END:VCARD`
                     size={200} 
                     level="H"
                     imageSettings={{
-                      src: '/ganpati.png',
+                      src: guruConfig.assets.qrLogo,
                       height: 40,
                       width: 40,
                       excavate: true,
@@ -115,7 +116,7 @@ END:VCARD`
             </h3>
             <div className="rounded-xl overflow-hidden border border-gold-400/10" style={{ height: '400px' }}>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!4v1777363375827!6m8!1m7!1s-OjsCWsOaBtNyBFCbsIY1A!2m2!1d26.45236569653541!2d87.26708356223959!3f182.12!4f6.569999999999993!5f0.4000000000000002"
+                src={guruConfig.contact.mapEmbedUrl}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -125,8 +126,17 @@ END:VCARD`
                 title="Location Street View"
               ></iframe>
             </div>
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=26.45236569653541,87.26708356223959"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 w-full flex items-center justify-center gap-2 bg-gradient-to-r from-gold-400 to-amber-500 hover:from-gold-300 hover:to-amber-400 text-cosmic-950 font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-gold-400/25"
+            >
+              <NavIcon className="w-5 h-5" />
+              {t('contact.getDirections')}
+            </a>
             <p className="text-xs text-amber-200/50 mt-3 text-center">
-              Biratnagar 11, Pitchara Chowk
+              {guruConfig.contact.location}
             </p>
           </CosmicCard>
         </div>

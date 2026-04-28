@@ -1,13 +1,18 @@
-import { PageLayout } from '../../components/layout/PageLayout'
-import { ServiceCard } from '../../components/ui/ServiceCard'
-import { CtaButton } from '../../components/ui/CtaButton'
+import { PageLayout } from '../../../../components/layout/PageLayout'
+import { ServiceCard } from '../../../../components/ui/ServiceCard'
+import { CtaButton } from '../../../../components/ui/CtaButton'
 import { useTranslation } from 'react-i18next'
-import { SERVICES } from '../../constants/services'
+import { useServiceList } from '../../../service/presentation/hooks/service.hooks'
 import { useState } from 'react'
+import { guruConfig } from '../../../../config/guru.config'
 
 export function HomePage() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const { data: services } = useServiceList()
   const [imageLoaded, setImageLoaded] = useState(false)
+  const isNepali = i18n.language === 'np'
+
+  const featuredServices = services?.slice(0, 3).sort((a, b) => a.displayOrder - b.displayOrder) || []
 
   return (
     <PageLayout>
@@ -17,7 +22,7 @@ export function HomePage() {
           {/* Cover image background */}
           <div className="absolute inset-0 opacity-40 overflow-hidden">
             <img
-              src="/cover.jpeg"
+              src={guruConfig.assets.coverImage}
               alt="Background"
               onLoad={() => setImageLoaded(true)}
               className={`w-full h-full object-cover object-center md:object-top transition-transform duration-[2000ms] ease-out ${
@@ -52,7 +57,7 @@ export function HomePage() {
               </div>
               
               <h1 className="text-6xl md:text-8xl font-display font-bold mb-4 text-gold-400 tracking-wide opacity-0 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-                शालिग्राम दाहाल
+                {isNepali ? guruConfig.name.nepali : guruConfig.name.english}
               </h1>
               
               <h2 className="text-2xl md:text-4xl font-display font-medium mb-4 text-amber-100 opacity-0 animate-slide-up" style={{ animationDelay: '0.4s' }}>
@@ -70,6 +75,7 @@ export function HomePage() {
               <div className="flex gap-6 justify-center flex-wrap opacity-0 animate-slide-up" style={{ animationDelay: '0.8s' }}>
                 <CtaButton to="/calendar">{t('home.bookAppointment')}</CtaButton>
                 <CtaButton to="/services" variant="outline">{t('home.ourServices')}</CtaButton>
+                <CtaButton to="/contact" variant="outline">{t('home.contactUs')}</CtaButton>
               </div>
             </div>
           </div>
@@ -96,12 +102,12 @@ export function HomePage() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-              {SERVICES.slice(0, 3).map((service, index) => (
+              {featuredServices.map((service, index) => (
                 <ServiceCard
-                  key={service.num}
-                  num={service.num}
-                  title={t(service.titleKey)}
-                  description={t(service.descKey)}
+                  key={service.id}
+                  num={String(service.displayOrder).padStart(2, '0')}
+                  title={isNepali ? service.titleNp : service.titleEn}
+                  description={isNepali ? service.descriptionNp : service.descriptionEn}
                   index={index}
                   compact
                 />
@@ -120,7 +126,7 @@ export function HomePage() {
         <section className="py-24 bg-cosmic-950 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-mystic-purple/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-mystic-indigo/10 rounded-full blur-3xl"></div>
-          
+
           <div className="relative z-10 container mx-auto px-4 text-center">
             <div className="max-w-3xl mx-auto">
               <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br from-mystic-purple/30 to-mystic-indigo/30 border border-gold-400/30 flex items-center justify-center">
@@ -136,6 +142,32 @@ export function HomePage() {
               </p>
               <CtaButton to="/calendar" variant="mystic">
                 {t('home.viewCalendar')}
+              </CtaButton>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Preview */}
+        <section className="py-24 bg-cosmic-900 relative overflow-hidden">
+          <div className="absolute inset-0 bg-sacred-pattern opacity-50"></div>
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gold-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-mystic-purple/10 rounded-full blur-3xl"></div>
+
+          <div className="relative z-10 container mx-auto px-4 text-center">
+            <div className="max-w-3xl mx-auto">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br from-gold-400/30 to-amber-500/30 border border-gold-400/30 flex items-center justify-center">
+                <svg className="w-8 h-8 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h2 className="text-5xl md:text-6xl font-display font-bold mb-6 text-gold-400">
+                {t('home.connectWithUs')}
+              </h2>
+              <p className="text-xl text-amber-200/70 mb-10 leading-relaxed">
+                {t('home.contactDesc')}
+              </p>
+              <CtaButton to="/contact">
+                {t('home.contactUs')}
               </CtaButton>
             </div>
           </div>

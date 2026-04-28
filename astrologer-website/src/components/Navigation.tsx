@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
+import { guruConfig } from '../config/guru.config'
 
 export function Navigation() {
   const { t, i18n } = useTranslation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const isNepali = i18n.language === 'np'
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng)
@@ -29,8 +31,8 @@ export function Navigation() {
         <div className="flex justify-between items-center">
           <Link to="/" className="text-xl md:text-2xl lg:text-3xl font-display font-bold text-gold-400 hover:text-gold-300 transition-colors flex items-center gap-3">
             <span className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center text-cosmic-950 text-sm md:text-lg flex-shrink-0">ॐ</span>
-            <span className="hidden sm:inline">शालिग्राम दाहाल</span>
-            <span className="sm:hidden">शालिग्राम</span>
+            <span className="hidden sm:inline">{isNepali ? guruConfig.name.nepali : guruConfig.name.english}</span>
+            <span className="sm:hidden">{isNepali ? guruConfig.name.nepali.split(' ')[0] : guruConfig.name.english.split(' ')[0]}</span>
           </Link>
 
           {/* Desktop Navigation */}

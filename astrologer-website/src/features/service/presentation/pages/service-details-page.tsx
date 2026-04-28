@@ -50,9 +50,14 @@ export function ServiceDetailsPage() {
           <div>
             <span className="font-semibold">ID:</span> {data.id}
           </div>
-          {data.description && (
+          {data.descriptionEn && (
             <div>
-              <span className="font-semibold">Description:</span> {data.description}
+              <span className="font-semibold">Description (EN):</span> {data.descriptionEn}
+            </div>
+          )}
+          {data.descriptionNp && (
+            <div>
+              <span className="font-semibold">Description (NP):</span> {data.descriptionNp}
             </div>
           )}
           {data.createdAt && (

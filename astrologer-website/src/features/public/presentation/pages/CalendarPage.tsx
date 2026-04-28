@@ -1,17 +1,20 @@
-import { Navigation } from '../../components/Navigation'
-import { Footer } from '../../components/Footer'
-import { useState, useMemo } from 'react'
+import { Navigation } from '../../../../components/Navigation'
+import { Footer } from '../../../../components/Footer'
 import { useTranslation } from 'react-i18next'
-import { useBookingList, useBookingMutations } from '../../features/booking/presentation/hooks/booking.hooks'
-import { NepaliDatePickerCustom } from '../../components/NepaliDatePickerCustom'
-import type { BookingEntity } from '../../features/booking/domain/entities/booking.entity'
+import { useState, useMemo } from 'react'
+import { useBookingList, useBookingMutations } from '../../../booking/presentation/hooks/booking.hooks'
+import { NepaliDatePickerCustom } from '../../../../components/NepaliDatePickerCustom'
+import type { BookingEntity } from '../../../booking/domain/entities/booking.entity'
 import NepaliDate from 'nepali-date-converter'
-import { SERVICE_NAMES } from '../../constants/services'
+import { useServiceList } from '../../../service/presentation/hooks/service.hooks'
 
 export function CalendarPage() {
   const { t } = useTranslation()
   const { data: bookingsData, isLoading, error } = useBookingList()
+  const { data: services } = useServiceList()
   const { add } = useBookingMutations()
+
+  const serviceNames = services?.map(s => s.titleEn) || []
 
   // Booking form state
   const [formData, setFormData] = useState({
@@ -304,7 +307,7 @@ export function CalendarPage() {
                   {t('calendar.serviceTypes')} *
                 </label>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  {SERVICE_NAMES.map((service) => (
+                  {serviceNames.map((service) => (
                     <label key={service} className="flex items-center space-x-2 cursor-pointer">
                       <input
                         type="checkbox"

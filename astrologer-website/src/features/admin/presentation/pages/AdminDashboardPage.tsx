@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Navigation } from '../../components/Navigation'
-import { Footer } from '../../components/Footer'
+import { Navigation } from '../../../../components/Navigation'
+import { Footer } from '../../../../components/Footer'
 import { Link } from 'react-router-dom'
-import { Calendar, Users, Settings, LogOut, CheckCircle, Clock, XCircle } from 'lucide-react'
-import { onAuthChange, logoutUser } from '../../firebase/auth'
-import { useBookingList } from '../../features/booking/presentation/hooks/booking.hooks'
+import { Users, Settings, LogOut, CheckCircle, Clock, XCircle } from 'lucide-react'
+import { onAuthChange, logoutUser } from '../../../../firebase/auth'
+import { useBookingList } from '../../../booking/presentation/hooks/booking.hooks'
 
 export function AdminDashboardPage() {
   const navigate = useNavigate()
@@ -145,7 +145,7 @@ export function AdminDashboardPage() {
           </div>
 
           {/* Quick Actions */}
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
             <Link
               to="/admin/bookings"
               className="bg-cosmic-800/40 backdrop-blur-sm p-6 rounded-xl border border-gold-400/20 hover:border-gold-400/50 transition"
@@ -154,33 +154,18 @@ export function AdminDashboardPage() {
                 <Users className="w-8 h-8 text-gold-400" />
                 <div>
                   <h3 className="font-display font-semibold text-lg text-amber-100">Manage Bookings</h3>
-                  <p className="text-sm text-amber-200/60">View and manage appointment requests</p>
                 </div>
               </div>
             </Link>
 
             <Link
-              to="/service"
+              to="/services"
               className="bg-cosmic-800/40 backdrop-blur-sm p-6 rounded-xl border border-gold-400/20 hover:border-gold-400/50 transition"
             >
               <div className="flex items-center gap-4">
                 <Settings className="w-8 h-8 text-gold-400" />
                 <div>
-                  <h3 className="font-display font-semibold text-lg text-amber-100">Manage Services</h3>
-                  <p className="text-sm text-amber-200/60">Update service offerings</p>
-                </div>
-              </div>
-            </Link>
-
-            <Link
-              to="/profile"
-              className="bg-cosmic-800/40 backdrop-blur-sm p-6 rounded-xl border border-gold-400/20 hover:border-gold-400/50 transition"
-            >
-              <div className="flex items-center gap-4">
-                <Calendar className="w-8 h-8 text-gold-400" />
-                <div>
-                  <h3 className="font-display font-semibold text-lg text-amber-100">Profile Settings</h3>
-                  <p className="text-sm text-amber-200/60">Update contact information</p>
+                  <h3 className="font-display font-semibold text-lg text-amber-100">Services</h3>
                 </div>
               </div>
             </Link>

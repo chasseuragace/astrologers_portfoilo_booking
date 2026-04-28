@@ -12,8 +12,8 @@ export function ServiceItemRow({ item, onView, onDelete }: ServiceItemRowProps) 
     <div className="flex items-center justify-between rounded border p-4 hover:bg-gray-50">
       <div className="flex-1">
         <h3 className="font-semibold">{item.name || 'Unnamed Service'}</h3>
-        {item.description && (
-          <p className="text-sm text-gray-600">{item.description}</p>
+        {item.descriptionEn && (
+          <p className="text-sm text-gray-600">{item.descriptionEn}</p>
         )}
       </div>
       <div className="space-x-2">

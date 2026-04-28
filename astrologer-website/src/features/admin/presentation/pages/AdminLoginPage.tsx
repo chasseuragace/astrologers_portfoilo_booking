@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Navigation } from '../../components/Navigation'
-import { Footer } from '../../components/Footer'
-import { loginWithEmail } from '../../firebase/auth'
+import { Navigation } from '../../../../components/Navigation'
+import { Footer } from '../../../../components/Footer'
+import { loginWithEmail } from '../../../../firebase/auth'
 
 export function AdminLoginPage() {
   const [email, setEmail] = useState('')

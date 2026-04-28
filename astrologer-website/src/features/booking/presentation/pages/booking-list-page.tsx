@@ -22,16 +22,15 @@ export function BookingListPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  const bookings = data || [];
-
   // Filter bookings
   const filteredBookings = useMemo(() => {
+    const bookings = data || [];
     return bookings.filter(booking => {
       const statusMatch = statusFilter === 'all' || booking.status === statusFilter;
       const dateMatch = !selectedDate || booking.nepaliDate === selectedDate;
       return statusMatch && dateMatch;
     });
-  }, [bookings, statusFilter, selectedDate]);
+  }, [data, statusFilter, selectedDate]);
 
   // Pagination
   const totalPages = Math.ceil(filteredBookings.length / itemsPerPage);

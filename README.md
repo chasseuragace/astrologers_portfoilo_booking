@@ -1,46 +1,81 @@
-# Astrologer Website - Shaligram Dahal
+# Astrologer Website
 
-A professional astrology and spiritual guidance website for Guru Shaligram Dahal, featuring booking management, service listings, and a Nepali calendar system.
+A bilingual (English/Nepali) React application built with Clean Architecture principles for managing astrology services and bookings.
 
-## 🌟 Live Demo
+## Architecture
 
-**Production URL:** https://shaligram-guru.netlify.app
+This project follows **Clean Architecture** with strict separation of concerns:
 
-## ✨ Features
+- **Domain Layer**: Pure business logic (entities, use cases, repository interfaces)
+- **Data Layer**: Data models, repository implementations (fake/real), data sources
+- **Presentation Layer**: UI components, hooks, pages
+- **Feature Modules**: Self-contained modules (booking, service, public, admin) with their own domain/data/presentation layers
 
-- **Multi-language Support** (Nepali & English) with i18n
-- **Service Listings** - 9 comprehensive astrology services
-- **Booking System** - Appointment scheduling with Nepali date picker
-- **Admin Dashboard** - Manage bookings and services
-- **Nepali Calendar** - Traditional date tracking
-- **Responsive Design** - Mobile-first cosmic theme
+All data flows through use cases and repositories - no direct data access from UI components.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-- **Frontend:** React 19 + TypeScript + Vite
-- **Styling:** Tailwind CSS with custom cosmic theme
-- **State Management:** TanStack Query (React Query)
-- **Routing:** React Router DOM
-- **i18n:** React i18next with browser language detection
-- **Icons:** Lucide React
-- **Build:** Netlify with SPA redirects
+- **Frontend**: React 19 + TypeScript + Vite
+- **Styling**: Tailwind CSS
+- **State Management**: TanStack Query (React Query)
+- **Routing**: React Router DOM with feature registry pattern
+- **i18n**: react-i18next
+- **Icons**: Lucide React
+- **Date Handling**: nepali-date-converter
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 astrologer-website/
 ├── src/
-│   ├── components/         # Reusable UI components
-│   ├── features/          # Feature modules (booking, service)
-│   ├── i18n/              # Translations (en, np)
-│   ├── pages/             # Public & Admin pages
-│   └── core/              # Utilities, hooks, types
-├── dist/                  # Production build
-├── netlify.toml           # Deployment config
-└── deploy.sh              # Deployment script
+│   ├── components/           # Shared UI components
+│   ├── config/              # Configuration files
+│   ├── core/
+│   │   ├── routing/         # Feature registry and routing
+│   │   └── context/         # Repository context providers
+│   ├── features/            # Feature modules (Clean Architecture)
+│   │   ├── booking/
+│   │   │   ├── domain/      # Entities, use cases, repository interfaces
+│   │   │   ├── data/        # Models, repository implementations
+│   │   │   └── presentation/# Components, hooks, pages
+│   │   ├── service/
+│   │   ├── public/
+│   │   └── admin/
+│   ├── firebase/            # Firebase auth integration
+│   ├── i18n/                # Translations (en, np)
+│   └── App.tsx              # Main entry point
+└── dist/                    # Production build
 ```
 
-## 🚀 Quick Start
+## Feature Modules
+
+Each feature module is self-contained with:
+
+- **Domain**: `entities/`, `repositories/`, `usecases/`
+- **Data**: `models/`, `repositories/` (fake/impl)
+- **Presentation**: `components/`, `hooks/`, `pages/`
+- **Module file**: Exports descriptor, routes, and public API
+
+### Current Features
+
+- **Booking**: Appointment scheduling with status management
+- **Service**: Bilingual service listings (titleEn, titleNp, descriptionEn, descriptionNp)
+- **Public**: Static pages (Home, About, Services, Calendar, Contact, My Bookings)
+- **Admin**: Admin dashboard and login
+
+## Routing
+
+Routes are centralized in `src/core/routing/feature-registry.ts`. Each feature module exports its routes and descriptor, which are registered in the registry. `App.tsx` uses only the registry - no manual route definitions.
+
+## Data Flow
+
+1. UI component calls a hook (e.g., `useServiceList`)
+2. Hook uses a use case (e.g., `GetAllServicesUseCase`)
+3. Use case calls repository interface
+4. Repository implementation (fake/real) fetches data
+5. Data flows back through layers to UI
+
+## Development
 
 ```bash
 cd astrologer-website
@@ -48,50 +83,41 @@ npm install
 npm run dev
 ```
 
-## 📦 Deployment
+## Build
 
-### Using deploy script:
+```bash
+npm run build
+```
+
+## Deployment
+
+Production URL: https://shaligram-guru.netlify.app
+
+Deploy via Netlify:
 ```bash
 bash deploy.sh
 ```
 
-### Manual Netlify deploy:
+Or manually:
 ```bash
 npm run build
 netlify deploy --prod --dir=dist
 ```
 
-## 🔧 Configuration
+## i18n
 
-Create `.env` file:
-```env
-NETLIFY_AUTH_TOKEN=your_token
-NETLIFY_SITE_ID=your_site_id
-```
+- Default language: Nepali (`np`)
+- Fallback: English (`en`)
+- Translation files: `src/i18n/locales/`
+- **Note**: Service content is stored in the Service entity (bilingual fields), not in i18n files. i18n is used only for static UI text (navigation, labels, buttons).
 
-## 📝 Services Offered
+## Bilingual Data Model
 
-1. Kundali / Horoscope Consultation
-2. Vastu Consultation
-3. Shraddha / Ritual Guidance
-4. Puja Consultation
-5. Marriage/Muhurat Consultation
-6. Birth Chart Creation
-7. Guna Milan / Marriage Compatibility
-8. Brata Udhyapan & Puran Path
-9. Shanti Puja (Moola Janit, Mangalika)
+Service entities store bilingual content directly:
+- `titleEn`, `titleNp`: Service titles in both languages
+- `descriptionEn`, `descriptionNp`: Descriptions in both languages
+- UI selects language based on `i18n.language === 'np'`
 
-## 🌐 i18n
+## License
 
-Default language: **Nepali** (`np`)
-Fallback: English (`en`)
-
-Translation files: `src/i18n/locales/`
-
-## 📄 License
-
-MIT License - Free for personal and commercial use.
-
----
-
-**Contact:** Guru Shaligram Dahal, Biratnagar, Nepal
+MIT

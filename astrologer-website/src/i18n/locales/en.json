@@ -9,17 +9,11 @@
   },
   "home": {
     "subtitle": "Astrologer & Spiritual Guide",
-    "description": "Renowned Vedic astrologer and spiritual guide specializing in Kundali analysis, predictions, Vastu consultation, sacred rituals, and Karmakanda based in Biratnagar, Nepal.",
+    "description": "Renowned Vedic astrologer and spiritual guide specializing in Kundali analysis, predictions, Vastu consultation, sacred rituals, and Karmakanda.",
     "bookAppointment": "Book Appointment",
     "ourServices": "My Services",
     "sacredServices": "Services",
     "ancientWisdom": "Ancient wisdom for modern challenges",
-    "kundaliTitle": "Kundali Consultation",
-    "kundaliDesc": "Detailed horoscope analysis and life guidance based on Vedic astrology principles.",
-    "vastuTitle": "Vastu Consultation",
-    "vastuDesc": "Expert advice on home and office vastu for harmony and prosperity.",
-    "ritualTitle": "Ritual Guidance",
-    "ritualDesc": "Guidance for shraddha, puja, and other important religious ceremonies.",
     "exploreServices": "Explore All Services",
     "celestialCalendar": "Celestial Calendar",
     "calendarDesc": "View my Nepali calendar to check available appointment slots and see scheduled bookings. Find the most auspicious time for your consultation.",
@@ -28,17 +22,13 @@
     "contactDesc": "Contact me for appointments, inquiries, or spiritual guidance. Begin your journey toward clarity and enlightenment.",
     "contactUs": "Contact Me",
     "locationTitle": "Location",
-    "locationValue": "Biratnagar 11, Pitchara Chowk"
+    "locationValue": ""
   },
   "about": {
-    "title": "About Me - Guru Shaligram Dahal",
+    "title": "About Me",
     "subtitle": "Your Astrologer & Spiritual Guide",
-    "intro": "I am Shaligram Dahal, a renowned astrologer and spiritual guide based in Biratnagar, Nepal. With years of experience in Vedic astrology, vastu shastra, and ritual ceremonies, I have helped countless individuals find clarity, peace, and prosperity in their lives.",
-    "expertise": "I specialize in Kundali (horoscope) analysis, vastu consultation, and guidance for important religious ceremonies like shraddha and puja. I combine ancient wisdom with practical guidance to help my clients navigate life's challenges.",
-    "services": "Whether you're seeking marriage compatibility analysis, muhurat (auspicious timing) for important events, or general spiritual guidance, I provide personalized consultations based on traditional Vedic principles.",
     "servicesOffered": "My Services",
     "location": "My Location",
-    "locationValue": "Biratnagar, Nepal",
     "experience": "My Experience",
     "experienceValue": "Years of dedicated practice in Vedic astrology and spiritual guidance",
     "languages": "Languages I Speak",
@@ -77,38 +67,19 @@
   "services": {
     "title": "Services",
     "description": "Comprehensive astrological and spiritual services to guide you on your life's journey. Ancient wisdom meets modern understanding.",
-    "kundaliTitle": "Kundali / Horoscope Consultation",
-    "kundaliDesc": "Detailed analysis of your birth chart (Kundali) to provide insights into your personality, life path, and future events. Includes predictions for marriage, foreign travel, health/disease, business, brat ceremonies, pasni, narayan, and other generic predictions.",
-    "vastuTitle": "Vastu Consultation",
-    "vastuDesc": "Expert guidance on vastu principles for your home, office, or business premises. Ensure harmony and prosperity through proper spatial arrangement.",
-    "shraddhaTitle": "Shraddha / Ritual Guidance",
-    "shraddhaDesc": "Complete guidance for shraddha ceremonies and other important rituals. Learn proper procedures, timings, and significance.",
-    "pujaTitle": "Puja Consultation",
-    "pujaDesc": "Guidance for various pujas and religious ceremonies. Learn which pujas to perform for specific needs and how to conduct them properly.",
-    "muhuratTitle": "Marriage/Date/Muhurat Consultation",
-    "muhuratDesc": "Find the most auspicious dates (muhurat) for marriage, griha pravesh, business startup, and other important life events.",
-    "generalTitle": "Birth Chart Creation",
-    "generalDesc": "Create your personalized birth chart based on your birth date and time.",
-    "gunaMilanTitle": "Guna Milan / Marriage Compatibility",
-    "gunaMilanDesc": "Kundali matching based on 36 gunas for marriage. Detailed analysis of Ashtakoot, Nadi, Rashi, Gana, Tara, Vashya, Yoni, and other compatibility factors.",
-    "brataPuranTitle": "Brata Udhyapan, Brata Pratishtha & Puran Path",
-    "brataPuranDesc": "Special guidance and services for Brata Udhyapan, Brata Pratishtha, Garud Puran, Chandi Path, Bhagawat Path, and Gita Path ceremonies.",
-    "shantiPujaTitle": "Shanti Puja - Moola Janit, Ashubha Nakshatra, Mangalika Yoga",
-    "shantiPujaDesc": "Special Shanti Puja and guidance for Moola Janit Dosha, Ashubha Nakshatra Janma Shanti, Mangalika Yoga Shanti, and Ark Vivah / Kumbh Vivah.",
     "beginJourney": "Begin Your Spiritual Journey"
   },
   "footer": {
     "title": "Astrologer & Spiritual Guide",
-    "location": "Biratnagar, Nepal",
     "tagline": "Guiding souls since generations",
     "copyright": "All rights reserved",
     "blessing": "May the stars illuminate your path"
   },
   "vcard": {
-    "title": "Astrologer & Spiritual Guru",
-    "org": "Shaligram Dahal Astrology",
-    "note": "Renowned astrologer specializing in Vedic astrology, vastu consultation, and ritual ceremonies.",
     "saveContact": "Save Contact",
     "scanToSave": "Scan to save contact to your phone"
+  },
+  "contact": {
+    "getDirections": "Get Directions"
   }
 }
