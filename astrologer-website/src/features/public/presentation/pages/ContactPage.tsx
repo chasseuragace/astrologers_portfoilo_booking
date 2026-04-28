@@ -116,7 +116,7 @@ END:VCARD`
             </h3>
             <div className="rounded-xl overflow-hidden border border-gold-400/10" style={{ height: '400px' }}>
               <iframe
-                src={guruConfig.contact.mapEmbedUrl}
+                src="https://www.google.com/maps/embed?pb=!4v1777382628056!6m8!1m7!1s-OjsCWsOaBtNyBFCbsIY1A!2m2!1d26.45236569653541!2d87.26708356223959!3f185.9869!4f0!5f0.7820865974627469"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -127,7 +127,7 @@ END:VCARD`
               ></iframe>
             </div>
             <a
-              href="https://www.google.com/maps/dir/?api=1&destination=26.45236569653541,87.26708356223959"
+              href="https://www.google.com/maps/dir/?api=1&destination=26.452197,87.267104"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 w-full flex items-center justify-center gap-2 bg-gradient-to-r from-gold-400 to-amber-500 hover:from-gold-300 hover:to-amber-400 text-cosmic-950 font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-gold-400/25"

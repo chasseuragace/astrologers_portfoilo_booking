@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
 import { guruConfig } from '../config/guru.config'
 
 export function Navigation() {
   const { t, i18n } = useTranslation()
+  const location = useLocation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const isNepali = i18n.language === 'np'
 
@@ -37,18 +38,21 @@ export function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={`text-amber-100 hover:text-gold-400 font-display font-medium transition-colors relative group ${
-                  link.to === '/admin' ? 'text-amber-100/60' : ''
-                }`}
-              >
-                {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold-400 transition-all group-hover:w-full"></span>
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.to
+              return (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className={`text-amber-100 hover:text-gold-400 font-display font-medium transition-colors relative group ${
+                    link.to === '/admin' ? 'text-amber-100/60' : ''
+                  } ${isActive ? 'text-gold-400' : ''}`}
+                >
+                  {link.label}
+                  <span className={`absolute bottom-0 left-0 h-0.5 bg-gold-400 transition-all ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                </Link>
+              )
+            })}
 
             <div className="flex items-center gap-2 ml-4 pl-4 border-l border-gold-400/20">
               <button
@@ -94,18 +98,21 @@ export function Navigation() {
         {isMenuOpen && (
           <div className="md:hidden mt-4 pt-4 border-t border-gold-400/20">
             <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`text-amber-100 hover:text-gold-400 font-display font-medium transition-colors py-2 ${
-                    link.to === '/admin' ? 'text-amber-100/60' : ''
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = location.pathname === link.to
+                return (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`text-amber-100 hover:text-gold-400 font-display font-medium transition-colors py-2 ${
+                      link.to === '/admin' ? 'text-amber-100/60' : ''
+                    } ${isActive ? 'text-gold-400' : ''}`}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              })}
 
               <div className="flex items-center gap-2 pt-4 border-t border-gold-400/20">
                 <button

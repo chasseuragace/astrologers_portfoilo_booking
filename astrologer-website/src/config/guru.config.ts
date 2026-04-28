@@ -77,7 +77,7 @@ export const guruConfig: GuruConfig = {
     website: 'https://shaligram-guru.netlify.app',
     facebookUrl: 'https://www.facebook.com/shaligram.dahal.58',
     facebookHandle: 'shaligram.dahal.58',
-    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!4v1777363375827!6m8!1m7!1s-OjsCWsOaBtNyBFCbsIY1A!2m2!1d26.45236569653541!2d87.26708356223959!3f182.12!4f6.569999999999993!5f0.4000000000000002',
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!4v1777381962740!6m8!1m7!1s-OjsCWsOaBtNyBFCbsIY1A!2m2!1d26.45236569653541!2d87.26708356223959!3f172.7651303793842!4f16.891177333383922!5f0.7820865974627469',
   },
   
   bio: {
