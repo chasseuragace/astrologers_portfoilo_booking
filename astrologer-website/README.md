@@ -1,56 +1,56 @@
-# Astrologer Website - Shaligram Dahal
+# Astrologer Website
 
-A React-based website for Shaligram Dahal, an astrologer/guru based in Biratnagar, Nepal. The website allows visitors to explore astrology-related services, view a Nepali calendar, and send booking requests. An admin panel allows the astrologer to approve or reject bookings and manage the site.
+A bilingual (English/Nepali) React application built with Clean Architecture principles for managing astrology services and bookings.
 
 ## Features
 
 ### Public Website
-- **Home Page**: Profile introduction with call-to-action buttons
+- **Home Page**: Profile introduction with featured services
 - **About Page**: Detailed information about Guru Shaligram Dahal
-- **Services Page**: List of astrology services with pricing
-- **Calendar Page**: Nepali Bikram Sambat calendar showing booking availability
+- **Services Page**: List of 9 astrology services with bilingual descriptions
+- **Calendar Page**: Nepali Bikram Sambat calendar with booking form
 - **Contact Page**: Contact information with QR code for vCard
-- **Booking Form**: Appointment request form with Nepali date support
+- **My Bookings**: View customer booking requests
 
 ### Admin Panel
-- **Login**: Secure admin authentication (demo: admin@example.com / admin123)
+- **Login**: Firebase authentication
 - **Dashboard**: Overview of booking statistics and quick actions
-- **Booking Management**: View, approve, reject, and manage booking requests
-- **Service Management**: Update service offerings
-- **Profile Settings**: Manage contact information and social links
+- **Booking Management**: View, approve, reject bookings at /admin/bookings
 
 ## Technology Stack
 
-- **Frontend**: React 18 + TypeScript + Vite
+- **Frontend**: React 19 + TypeScript + Vite
 - **Styling**: Tailwind CSS
-- **Routing**: React Router v6
+- **State Management**: TanStack Query (React Query)
+- **Routing**: React Router DOM with feature registry pattern
+- **i18n**: react-i18next
 - **Icons**: Lucide React
-- **QR Code**: qrcode.react
-- **Architecture**: Clean Architecture (domain/data/presentation layers) using scaffolder
+- **Date Handling**: nepali-date-converter
+- **Auth**: Firebase Authentication
+- **Architecture**: Clean Architecture (domain/data/presentation layers)
 
 ## Project Structure
 
-The project follows Clean Architecture principles with domain/data/presentation layers:
+The project follows Clean Architecture with self-contained feature modules:
 
 ```
 src/
-├── core/                 # Core utilities and routing
-│   ├── errors/          # Error handling
-│   ├── usecase/         # Base use case
-│   ├── components/      # Shared components
-│   └── routing/         # Feature registry
-├── features/            # Feature modules
+├── components/           # Shared UI components
+├── config/              # Configuration files
+├── core/
+│   ├── routing/         # Feature registry and routing
+│   └── context/         # Repository context providers
+├── features/            # Feature modules (Clean Architecture)
 │   ├── booking/         # Booking feature
-│   │   ├── domain/      # Entities, repositories, use cases
+│   │   ├── domain/      # Entities, use cases, repository interfaces
 │   │   ├── data/        # Models, repository implementations
-│   │   └── presentation/# Pages, components, hooks
-│   ├── service/         # Service feature
-│   └── profile/         # Profile feature
-├── pages/               # Page components
-│   ├── public/          # Public-facing pages
-│   └── admin/           # Admin panel pages
-├── components/          # Shared UI components
-└── lib/                 # Utilities
+│   │   └── presentation/# Components, hooks, pages
+│   ├── service/         # Service feature (bilingual listings)
+│   ├── public/          # Public pages (Home, About, Services, Calendar, Contact)
+│   └── admin/           # Admin pages (Login, Dashboard)
+├── firebase/            # Firebase auth integration
+├── i18n/                # Translations (en, np) - static UI text only
+└── App.tsx              # Main entry point
 ```
 
 ## Getting Started
@@ -61,17 +61,17 @@ src/
 
 ### Installation
 
-1. Install dependencies:
 ```bash
 npm install
 ```
 
-2. Start the development server:
+### Development
+
 ```bash
 npm run dev
 ```
 
-3. Open [http://localhost:5173](http://localhost:5173) in your browser
+Open [http://localhost:5173](http://localhost:5173)
 
 ### Build for Production
 
@@ -79,36 +79,44 @@ npm run dev
 npm run build
 ```
 
-The built files will be in the `dist` directory.
+Built files will be in the `dist` directory.
 
-## Admin Access
+## Architecture
 
-For demo purposes, use these credentials:
-- **Email**: admin@example.com
-- **Password**: admin123
+This project follows **Clean Architecture** with strict separation of concerns:
 
-## Features Implemented
+- **Domain Layer**: Pure business logic (entities, use cases, repository interfaces)
+- **Data Layer**: Data models, repository implementations (fake/real), data sources
+- **Presentation Layer**: UI components, hooks, pages
+- **Feature Modules**: Self-contained modules with their own domain/data/presentation layers
 
-- ✅ Clean Architecture with domain/data/presentation layers
-- ✅ Booking system with status management (Pending, Approved, Rejected, Completed, Cancelled)
-- ✅ Service management
-- ✅ Profile/contact management
-- ✅ Nepali calendar (Bikram Sambat) display
-- ✅ Booking form with Nepali date input
-- ✅ QR code for vCard contact information
-- ✅ Admin dashboard with statistics
-- ✅ Responsive design with Tailwind CSS
-- ✅ React Router navigation
+All data flows through use cases and repositories - no direct data access from UI components.
 
-## Future Enhancements
+## Routing
 
-- Firebase/Firestore backend integration
-- Real-time booking updates
-- Email notifications for booking confirmations
-- SMS verification
-- Nepali date picker integration
-- Payment gateway integration
-- Video consultation support
+Routes are centralized in `src/core/routing/feature-registry.ts`. Each feature module exports its routes and descriptor, which are registered in the registry. `App.tsx` uses only the registry - no manual route definitions.
+
+## Bilingual Data Model
+
+Service entities store bilingual content directly:
+- `titleEn`, `titleNp`: Service titles in both languages
+- `descriptionEn`, `descriptionNp`: Descriptions in both languages
+- UI selects language based on `i18n.language === 'np'`
+
+i18n files contain only static UI text (navigation, labels, buttons), not service content.
+
+## AI Optimization
+
+The site includes `/llms.txt` at the root for AI visibility (like robots.txt for LLMs). This file provides AI systems with a curated map of important content when users paste URLs into ChatGPT, Claude, or Perplexity.
+
+## Deployment
+
+Production URL: https://shaligram-guru.netlify.app
+
+Deploy via Netlify:
+```bash
+bash deploy.sh
+```
 
 ## License
 
