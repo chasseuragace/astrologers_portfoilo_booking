@@ -144,6 +144,29 @@ END:VCARD`
               </p>
             </div>
           </div>
+
+          {/* Google Maps Street View */}
+          <div className="mt-8 bg-cosmic-800/40 backdrop-blur-sm p-6 rounded-2xl border border-gold-400/20">
+            <h3 className="font-display font-semibold text-xl mb-4 text-amber-100 text-center">
+              <MapPin className="w-5 h-5 inline-block mr-2 text-gold-400" />
+              {t('home.locationTitle')}
+            </h3>
+            <div className="rounded-xl overflow-hidden border border-gold-400/10" style={{ height: '400px' }}>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!4v1777363375827!6m8!1m7!1s-OjsCWsOaBtNyBFCbsIY1A!2m2!1d26.45236569653541!2d87.26708356223959!3f182.12!4f6.569999999999993!5f0.4000000000000002"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Location Street View"
+              ></iframe>
+            </div>
+            <p className="text-xs text-amber-200/50 mt-3 text-center">
+              Biratnagar 11, Pitchara Chowk
+            </p>
+          </div>
         </div>
       </main>
       <Footer />
