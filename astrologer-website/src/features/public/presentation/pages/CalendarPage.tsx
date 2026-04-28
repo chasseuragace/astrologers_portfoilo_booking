@@ -254,59 +254,77 @@ export function CalendarPage() {
               <p className="text-amber-200/70">{t('calendar.fillForm')}</p>
             </div>
             
-            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2 text-amber-100">
-                  {t('calendar.fullName')} *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gold-400/30 rounded-lg bg-cosmic-900/50 text-amber-100 placeholder-amber-200/40 focus:border-gold-400 focus:outline-none transition-colors"
-                  placeholder="Your full name"
-                />
+            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium mb-1 text-amber-100">
+                    {t('calendar.fullName')} *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2 border border-gold-400/30 rounded-lg bg-cosmic-900/50 text-amber-100 placeholder-amber-200/40 focus:border-gold-400 focus:outline-none transition-colors"
+                    placeholder="Your full name"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium mb-1 text-amber-100">
+                    {t('calendar.phoneNumber')} *
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    required
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2 border border-gold-400/30 rounded-lg bg-cosmic-900/50 text-amber-100 placeholder-amber-200/40 focus:border-gold-400 focus:outline-none transition-colors"
+                    placeholder="Your phone number"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium mb-1 text-amber-100">
+                    {t('calendar.email')} ({t('calendar.optional')})
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2 border border-gold-400/30 rounded-lg bg-cosmic-900/50 text-amber-100 placeholder-amber-200/40 focus:border-gold-400 focus:outline-none transition-colors"
+                    placeholder="Your email address"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="location" className="block text-sm font-medium mb-1 text-amber-100">
+                    {t('calendar.location')} *
+                  </label>
+                  <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    required
+                    value={formData.location}
+                    onChange={handleChange}
+                    placeholder="e.g., Biratnagar, Office, or Online"
+                    className="w-full px-3 py-2 border border-gold-400/30 rounded-lg bg-cosmic-900/50 text-amber-100 placeholder-amber-200/40 focus:border-gold-400 focus:outline-none transition-colors"
+                  />
+                </div>
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium mb-2 text-amber-100">
-                  {t('calendar.phoneNumber')} *
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  required
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gold-400/30 rounded-lg bg-cosmic-900/50 text-amber-100 placeholder-amber-200/40 focus:border-gold-400 focus:outline-none transition-colors"
-                  placeholder="Your phone number"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2 text-amber-100">
-                  {t('calendar.email')} ({t('calendar.optional')})
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gold-400/30 rounded-lg bg-cosmic-900/50 text-amber-100 placeholder-amber-200/40 focus:border-gold-400 focus:outline-none transition-colors"
-                  placeholder="Your email address"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-3 text-amber-100">
+                <label className="block text-sm font-medium mb-2 text-amber-100">
                   {t('calendar.serviceTypes')} *
                 </label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   {serviceNames.map((service) => (
                     <label key={service} className="flex items-center space-x-2 cursor-pointer">
                       <input
@@ -322,17 +340,17 @@ export function CalendarPage() {
                         }}
                         className="w-4 h-4 accent-gold-400"
                       />
-                      <span className="text-amber-200/70">{service}</span>
+                      <span className="text-amber-200/70 text-sm">{service}</span>
                     </label>
                   ))}
                 </div>
                 {formData.serviceTypes.length === 0 && (
-                  <p className="text-sm text-gold-400/70 mt-2">{t('calendar.selectService')}</p>
+                  <p className="text-sm text-gold-400/70 mt-1">{t('calendar.selectService')}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="nepaliDate" className="block text-sm font-medium mb-2 text-amber-100">
+                <label htmlFor="nepaliDate" className="block text-sm font-medium mb-1 text-amber-100">
                   {t('calendar.selectDate')} (BS) *
                 </label>
                 <NepaliDatePickerCustom
@@ -344,32 +362,16 @@ export function CalendarPage() {
               </div>
 
               <div>
-                <label htmlFor="location" className="block text-sm font-medium mb-2 text-amber-100">
-                  {t('calendar.location')} *
-                </label>
-                <input
-                  type="text"
-                  id="location"
-                  name="location"
-                  required
-                  value={formData.location}
-                  onChange={handleChange}
-                  placeholder="e.g., Biratnagar, Office, or Online"
-                  className="w-full px-4 py-3 border border-gold-400/30 rounded-lg bg-cosmic-900/50 text-amber-100 placeholder-amber-200/40 focus:border-gold-400 focus:outline-none transition-colors"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="description" className="block text-sm font-medium mb-2 text-amber-100">
+                <label htmlFor="description" className="block text-sm font-medium mb-1 text-amber-100">
                   {t('calendar.description')}
                 </label>
                 <textarea
                   id="description"
                   name="description"
-                  rows={4}
+                  rows={3}
                   value={formData.description}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gold-400/30 rounded-lg bg-cosmic-900/50 text-amber-100 placeholder-amber-200/40 focus:border-gold-400 focus:outline-none transition-colors resize-none"
+                  className="w-full px-3 py-2 border border-gold-400/30 rounded-lg bg-cosmic-900/50 text-amber-100 placeholder-amber-200/40 focus:border-gold-400 focus:outline-none transition-colors resize-none"
                   placeholder="Any additional information about your consultation needs"
                 />
               </div>
@@ -377,7 +379,7 @@ export function CalendarPage() {
               <button
                 type="submit"
                 disabled={formData.serviceTypes.length === 0}
-                className="w-full bg-gradient-to-r from-gold-500 to-gold-600 text-cosmic-950 px-6 py-4 rounded-lg font-display font-semibold hover:shadow-2xl hover:shadow-gold-400/30 hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                className="w-full bg-gradient-to-r from-gold-500 to-gold-600 text-cosmic-950 px-6 py-3 rounded-lg font-display font-semibold hover:shadow-2xl hover:shadow-gold-400/30 hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
                 {t('calendar.submit')}
               </button>
