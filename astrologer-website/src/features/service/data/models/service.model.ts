@@ -98,8 +98,8 @@ export function dummyService(id: string = '1'): ServiceModel {
       descriptionNp: 'ब्रत उद्यापन, ब्रत प्रतिष्ठा, गरुड पुराण, चण्डी पाठ, भागवत पाठ, र गीता पाठको लागि विशेष मार्गदर्शन र सेवा।',
     },
     {
-      titleEn: 'Shanti Puja - Janma, Moola Janit, Ashubha Nakshatra, Mangalika Yoga',
-      titleNp: 'शान्ति पूजा - जन्म, मूल जनित, अशुभ नक्षत्र, मांगलिक योग',
+      titleEn: 'Shanti Puja -  Moola Janit, Ashubha Nakshatra, Mangalika Yoga',
+      titleNp: 'शान्ति पूजा -  मूल जनित, अशुभ नक्षत्र जन्म, मांगलिक योग',
       descriptionEn: 'Special shanti puja and guidance for moola janit dosh, ashubha nakshatra birth shanti, mangalika yoga shanti, and ark vivah / kumbh vivah.',
       descriptionNp: 'मूल जनित दोष, अशुभ नक्षत्र जन्म शान्ति, मांगलिक योग शान्ति, र अर्क विवाह / कुम्भ विवाहको लागि विशेष शान्ति पूजा र मार्गदर्शन।',
     },
