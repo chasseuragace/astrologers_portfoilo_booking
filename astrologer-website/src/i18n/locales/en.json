@@ -101,5 +101,12 @@
     "tagline": "Guiding souls since generations",
     "copyright": "All rights reserved",
     "blessing": "May the stars illuminate your path"
+  },
+  "vcard": {
+    "title": "Astrologer & Spiritual Guru",
+    "org": "Shaligram Dahal Astrology",
+    "note": "Renowned astrologer specializing in Vedic astrology, vastu consultation, and ritual ceremonies.",
+    "saveContact": "Save Contact",
+    "scanToSave": "Scan to save contact to your phone"
   }
 }

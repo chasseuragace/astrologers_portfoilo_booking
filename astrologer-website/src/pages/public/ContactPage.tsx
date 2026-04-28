@@ -13,14 +13,14 @@ export function ContactPage() {
 VERSION:4.0
 FN:Shaligram Dahal
 N:Dahal;Shaligram;;;
-TITLE:Astrologer & Spiritual Guru
-ORG:Shaligram Dahal Astrology
+TITLE:${t('vcard.title')}
+ORG:${t('vcard.org')}
 TEL;TYPE=CELL;VALUE=uri:tel:+977-9842081092
 EMAIL:shaligramdahal2012@gmail.com
 ADR;TYPE=WORK:;;Biratnagar Pitchara;;Nepal
 URL:https://shaligram-guru.netlify.app
 X-SOCIALPROFILE;TYPE=facebook:https://www.facebook.com/shaligram.dahal.58
-NOTE:Renowned astrologer specializing in Vedic astrology, vastu consultation, and ritual ceremonies.
+NOTE:${t('vcard.note')}
 END:VCARD`
 
   return (
@@ -76,9 +76,9 @@ END:VCARD`
 
               {/* QR Code */}
               <CosmicCard variant="inner" className="flex flex-col items-center justify-center">
-                <h3 className="font-display font-semibold text-lg mb-4 text-amber-100 text-center">Save Contact</h3>
+                <h3 className="font-display font-semibold text-lg mb-4 text-amber-100 text-center">{t('vcard.saveContact')}</h3>
                 <p className="text-sm text-amber-200/60 mb-4 text-center">
-                  Scan to save contact to your phone
+                  {t('vcard.scanToSave')}
                 </p>
                 <div className="bg-white p-4 rounded-lg">
                   <QRCodeSVG 
