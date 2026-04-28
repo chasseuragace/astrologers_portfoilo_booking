@@ -44,7 +44,15 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo "📦 Building React/Vite app..."
+echo "� Validating translations..."
+node scripts/validate-translations.js
+
+if [ $? -ne 0 ]; then
+    echo "❌ Translation validation failed"
+    exit 1
+fi
+
+echo "�📦 Building React/Vite app..."
 npm run build
 
 if [ $? -ne 0 ]; then
