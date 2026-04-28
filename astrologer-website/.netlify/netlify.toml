@@ -1,6 +1,8 @@
 plugins = []
 headers = []
-redirects = []
+redirects = [
+  { from = "/*", to = "/index.html", status = 200 }
+]
 
 [functions]
 
