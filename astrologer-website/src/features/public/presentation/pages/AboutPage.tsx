@@ -2,9 +2,11 @@ import { PageLayout } from '../../../../components/layout/PageLayout'
 import { PageHeader } from '../../../../components/layout/PageHeader'
 import { CosmicCard } from '../../../../components/ui/CosmicCard'
 import { InfoCard } from '../../../../components/ui/InfoCard'
+import { ImageCarousel } from '../../../../components/ui/ImageCarousel'
 import { useTranslation } from 'react-i18next'
 import { useServiceList } from '../../../service/presentation/hooks/service.hooks'
 import { guruConfig } from '../../../../config/guru.config'
+import { useEffect } from 'react'
 
 export function AboutPage() {
   const { t, i18n } = useTranslation()
@@ -13,6 +15,25 @@ export function AboutPage() {
   const bio = isNepali ? guruConfig.bio.nepali : guruConfig.bio.english
 
   const sortedServices = services?.sort((a, b) => a.displayOrder - b.displayOrder) || []
+
+  const galleryImages = [
+    '/gallery/IMG_20260429_165120.jpg',
+    '/gallery/IMG_20260429_165209.jpg',
+    '/gallery/IMG_20260429_165241.jpg',
+    '/gallery/IMG_20260429_165308.jpg',
+    '/gallery/IMG_20260429_165948.jpg',
+    '/gallery/IMG_20260429_170057.jpg',
+    '/gallery/IMG_20260429_170118.jpg',
+    '/gallery/IMG_20260429_170217.jpg',
+  ]
+
+  // Preload gallery images
+  useEffect(() => {
+    galleryImages.forEach((imageSrc) => {
+      const img = new Image()
+      img.src = imageSrc
+    })
+  }, [galleryImages])
 
   return (
     <PageLayout>
@@ -50,6 +71,11 @@ export function AboutPage() {
                 </CosmicCard>
               ))}
             </div>
+          </CosmicCard>
+
+          {/* Credentials Gallery */}
+          <CosmicCard className="mb-8">
+            <ImageCarousel images={galleryImages} title={t('about.credentials')} />
           </CosmicCard>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
