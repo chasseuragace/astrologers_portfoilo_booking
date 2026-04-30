@@ -22,7 +22,10 @@ export interface GuruConfig {
   contact: {
     phone: string;
     email: string;
-    location: string;
+    location: {
+      english: string;
+      nepali: string;
+    };
     website: string;
     facebookUrl: string;
     facebookHandle: string;
@@ -73,7 +76,10 @@ export const guruConfig: GuruConfig = {
   contact: {
     phone: '+977-9842081092',
     email: 'shaligramdahal2012@gmail.com',
-    location: 'Biratnagar Pitchara, Nepal',
+    location: {
+      english: 'Biratnagar Pitchara, Nepal',
+      nepali: 'विराटनगर पिछरा, नेपाल',
+    },
     website: 'https://shaligram-guru.netlify.app',
     facebookUrl: 'https://www.facebook.com/shaligram.dahal.58',
     facebookHandle: 'shaligram.dahal.58',

@@ -62,7 +62,7 @@ export function dummyBooking(id: string = '1'): BookingModel {
     email: `client${id}@example.com`,
     serviceType: 'Kundali Consultation',
     nepaliDate: '2081/05/12',
-    location: guruConfig.contact.location,
+    location: guruConfig.contact.location.english,
     description: 'General consultation',
     status: 'Pending',
     duration: '30 minutes',

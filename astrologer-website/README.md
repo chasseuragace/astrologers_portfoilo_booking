@@ -109,6 +109,15 @@ i18n files contain only static UI text (navigation, labels, buttons), not servic
 
 The site includes `/llms.txt` at the root for AI visibility (like robots.txt for LLMs). This file provides AI systems with a curated map of important content when users paste URLs into ChatGPT, Claude, or Perplexity.
 
+## Image Optimization
+
+The project includes an automatic image optimization step that runs after every build. It uses `sharp` to compress JPEG, PNG, and WebP images in the `dist` folder, ensuring faster load times and smaller deployment sizes.
+
+To run it manually:
+```bash
+npm run optimize-images
+```
+
 ## Deployment
 
 Production URL: https://shaligram-guru.netlify.app

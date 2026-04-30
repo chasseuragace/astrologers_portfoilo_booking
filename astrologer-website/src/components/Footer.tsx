@@ -20,7 +20,9 @@ export function Footer() {
           </div>
           
           <div className="text-center">
-            <p className="text-amber-200/80 font-display">{guruConfig.contact.location}</p>
+            <p className="text-amber-200/80 font-display">
+              {isNepali ? guruConfig.contact.location.nepali : guruConfig.contact.location.english}
+            </p>
             <p className="text-amber-200/50 text-sm mt-1">{t('footer.tagline')}</p>
           </div>
           

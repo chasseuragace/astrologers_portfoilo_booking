@@ -8,7 +8,8 @@ import { useTranslation } from 'react-i18next'
 import { guruConfig } from '../../../../config/guru.config'
 
 export function ContactPage() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const isNepali = i18n.language === 'np'
 
   const vCardData = `BEGIN:VCARD
 VERSION:4.0
@@ -18,7 +19,7 @@ TITLE:${guruConfig.vcard.title}
 ORG:${guruConfig.vcard.org}
 TEL;TYPE=CELL;VALUE=uri:tel:${guruConfig.contact.phone}
 EMAIL:${guruConfig.contact.email}
-ADR;TYPE=WORK:;;${guruConfig.contact.location};;Nepal
+ADR;TYPE=WORK:;;${guruConfig.contact.location.english};;Nepal
 URL:${guruConfig.contact.website}
 X-SOCIALPROFILE;TYPE=facebook:${guruConfig.contact.facebookUrl}
 NOTE:${guruConfig.vcard.note}
@@ -50,7 +51,9 @@ END:VCARD`
                 </ContactItem>
 
                 <ContactItem label="Location" icon={<MapPin className="w-6 h-6 text-cosmic-950" />}>
-                  <p className="text-amber-200/70">{guruConfig.contact.location}</p>
+                  <p className="text-amber-200/70">
+                    {isNepali ? guruConfig.contact.location.nepali : guruConfig.contact.location.english}
+                  </p>
                 </ContactItem>
 
                 <ContactItem label="Website" icon={<Globe className="w-6 h-6 text-cosmic-950" />}>
@@ -136,7 +139,7 @@ END:VCARD`
               {t('contact.getDirections')}
             </a>
             <p className="text-xs text-amber-200/50 mt-3 text-center">
-              {guruConfig.contact.location}
+              {isNepali ? guruConfig.contact.location.nepali : guruConfig.contact.location.english}
             </p>
           </CosmicCard>
         </div>

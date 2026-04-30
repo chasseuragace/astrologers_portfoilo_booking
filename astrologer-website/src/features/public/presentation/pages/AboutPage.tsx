@@ -79,7 +79,7 @@ export function AboutPage() {
           </CosmicCard>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <InfoCard label={t('about.location')} value={guruConfig.contact.location} />
+            <InfoCard label={t('about.location')} value={isNepali ? guruConfig.contact.location.nepali : guruConfig.contact.location.english} />
             <InfoCard label={t('about.experience')} value={t('about.experienceValue')} />
             <InfoCard label={t('about.languages')} value={t('about.languagesValue')} />
           </div>

@@ -65,7 +65,7 @@ export function dummyService(id: string = '1'): ServiceModel {
       titleEn: 'Shraddha / Ritual Guidance',
       titleNp: 'श्राद्ध / अनुष्ठान मार्गदर्शन',
       descriptionEn: 'Complete guidance for Shraddha ceremonies and other important rituals. Learn the proper procedures, timings, and significance.',
-      descriptionNp: 'श्राद्ध समारोहहरू र अन्य महत्त्वपूर्ण अनुष्ठानहरूको लागि पूर्ण मार्गदर्शन। उचित प्रक्रियाहरू, समय, र महत्व कार्यान्वयन।',
+      descriptionNp: 'श्राद्ध समारोहहरू र अन्य महत्त्वपूर्ण अनुष्ठानहरूको लागि पूर्ण मार्गदर्शन। उचित प्रक्रियाहरू, समय, महत्व र कार्यान्वयन।',
     },
     {
       titleEn: 'Puja Consultation',
