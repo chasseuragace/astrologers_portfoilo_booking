@@ -53,7 +53,7 @@ export function dummyService(id: string = '1'): ServiceModel {
       titleEn: 'Kundali / Horoscope Consultation',
       titleNp: 'कुण्डली / राशिफल परामर्श',
       descriptionEn: 'Detailed analysis of your birth chart to provide insights into your personality, life path, and future events. Includes marriage, foreign travel, business predictions.',
-      descriptionNp: 'तपाईंको व्यक्तित्व, जीवन पथ, र भविष्यको घटनाहरूमा अन्तर्दृष्टि प्रदान गर्न तपाईंको जन्म कुण्डलीको विस्तृत विश्लेषण। विवाह, बिदेश यात्रा, औदाई, व्यापारको फलादेश समावेश छन्।',
+      descriptionNp: 'तपाईंको व्यक्तित्व, जीवन पथ, र भविष्यको घटनाहरूमा अन्तर्दृष्टि प्रदान गर्न तपाईंको जन्म कुण्डलीको विस्तृत विश्लेषण। विवाह, बिदेश यात्रा, व्यापारको फलादेश समावेश छन्।',
     },
     {
       titleEn: 'Vastu Consultation',
@@ -65,13 +65,13 @@ export function dummyService(id: string = '1'): ServiceModel {
       titleEn: 'Shraddha / Ritual Guidance',
       titleNp: 'श्राद्ध / अनुष्ठान मार्गदर्शन',
       descriptionEn: 'Complete guidance for Shraddha ceremonies and other important rituals. Learn the proper procedures, timings, and significance.',
-      descriptionNp: 'श्राद्ध समारोहहरू र अन्य महत्त्वपूर्ण अनुष्ठानहरूको लागि पूर्ण मार्गदर्शन। उचित प्रक्रियाहरू, समय, र महत्व सिक्न।',
+      descriptionNp: 'श्राद्ध समारोहहरू र अन्य महत्त्वपूर्ण अनुष्ठानहरूको लागि पूर्ण मार्गदर्शन। उचित प्रक्रियाहरू, समय, र महत्व कार्यान्वयन।',
     },
     {
       titleEn: 'Puja Consultation',
       titleNp: 'पूजा परामर्श',
       descriptionEn: 'Guidance for various pujas and religious ceremonies. Learn which pujas to perform for specific needs and how to perform them properly.',
-      descriptionNp: 'विभिन्न पूजाहरू र धार्मिक समारोहहरूको लागि मार्गदर्शन। विशिष्ट आवश्यकताहरूको लागि कुन पूजाहरू गर्ने र तिनीहरूलाई कसरी उचित रूपमा गर्ने सिक्न।',
+      descriptionNp: 'विभिन्न पूजाहरू र धार्मिक समारोहहरूको लागि मार्गदर्शन। विशिष्ट आवश्यकताहरूको लागि कुन पूजाहरू गर्ने र तिनीहरूलाई कसरी उचित रूपमा गर्ने परामर्श र कार्यान्वयन।',
     },
     {
       titleEn: 'Marriage/Date/Muhurat Consultation',
@@ -83,7 +83,7 @@ export function dummyService(id: string = '1'): ServiceModel {
       titleEn: 'General Astrology Consultation',
       titleNp: 'जन्म कुण्डली निर्माण',
       descriptionEn: 'Create your personal birth chart based on your birth date and time.',
-      descriptionNp: 'जन्म मिति र समयको आधारमा तपाईंको व्यक्तिगत जन्म कुण्डली निर्माण गर्न।',
+      descriptionNp: 'जन्म मिति र समयको आधारमा तपाईंको व्यक्तिगत जन्म कुण्डली निर्माण र फलादेश।',
     },
     {
       titleEn: 'Guna Milan / Marriage Compatibility',
