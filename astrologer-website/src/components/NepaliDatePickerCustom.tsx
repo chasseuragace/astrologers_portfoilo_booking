@@ -16,8 +16,8 @@ export function NepaliDatePickerCustom({
   className = ''
 }: NepaliDatePickerCustomProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [displayMonth, setDisplayMonth] = useState<number>(1)
-  const [displayYear, setDisplayYear] = useState<number>(2083)
+  const [displayMonth, setDisplayMonth] = useState<number>(new NepaliDate().getMonth() + 1)
+  const [displayYear, setDisplayYear] = useState<number>(new NepaliDate().getYear())
   const inputRef = useRef<HTMLInputElement>(null)
   const pickerRef = useRef<HTMLDivElement>(null)
   const prevValueRef = useRef<string>(value)
@@ -57,7 +57,13 @@ export function NepaliDatePickerCustom({
     return monthDays - 1
   }
 
+  const getStartDayOfMonth = (year: number, month: number) => {
+    const d = new NepaliDate(year, month - 1, 1)
+    return d.getDay()
+  }
+
   const daysInMonth = getDaysInMonth(displayYear, displayMonth)
+  const startDay = getStartDayOfMonth(displayYear, displayMonth)
 
   const handlePrevMonth = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -154,6 +160,10 @@ export function NepaliDatePickerCustom({
 
           {/* Calendar Days */}
           <div className="grid grid-cols-7 gap-1">
+            {/* Empty cells for padding */}
+            {Array.from({ length: startDay }, (_, i) => (
+              <div key={`empty-${i}`} />
+            ))}
             {Array.from({ length: daysInMonth }, (_, i) => {
               const day = i + 1
               const dateStr = `${displayYear}/${String(displayMonth).padStart(2, '0')}/${String(day).padStart(2, '0')}`

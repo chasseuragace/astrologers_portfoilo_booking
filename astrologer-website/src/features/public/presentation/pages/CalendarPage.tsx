@@ -49,6 +49,11 @@ export function CalendarPage() {
     }
     return monthDays - 1
   }, [currentMonth, currentYear])
+
+  const startDay = useMemo(() => {
+    const d = new NepaliDate(currentYear, currentMonth - 1, 1)
+    return d.getDay()
+  }, [currentMonth, currentYear])
   
   const bookings = bookingsData || []
 
@@ -196,15 +201,28 @@ export function CalendarPage() {
             </div>
 
             <div className="grid grid-cols-7 gap-1 md:gap-2">
+              {/* Empty cells for padding */}
+              {Array.from({ length: startDay }, (_, i) => (
+                <div key={`empty-${i}`} className="bg-transparent" />
+              ))}
               {Array.from({ length: days }, (_, i) => {
                 const day = i + 1
                 const dayBookings = getBookingsForDate(day)
+                const isToday = currentYear === now.getYear() && (currentMonth - 1) === now.getMonth() && day === now.getDate()
+
                 return (
                   <div
                     key={day}
-                    className="bg-cosmic-900/50 border border-gold-400/20 rounded-lg p-1 md:p-2 min-h-16 md:min-h-24 hover:border-gold-400/50 hover:bg-gold-400/5 cursor-pointer transition-all"
+                    className={`bg-cosmic-900/50 border rounded-lg p-1 md:p-2 min-h-16 md:min-h-24 hover:border-gold-400/50 hover:bg-gold-400/5 cursor-pointer transition-all ${
+                      isToday 
+                        ? 'border-gold-400 shadow-[0_0_15px_rgba(251,191,36,0.3)] bg-gold-400/10' 
+                        : 'border-gold-400/20'
+                    }`}
                   >
-                    <div className="font-display font-semibold text-amber-100 mb-1 text-sm md:text-base">{day}</div>
+                    <div className={`font-display font-semibold mb-1 text-sm md:text-base ${isToday ? 'text-gold-400' : 'text-amber-100'}`}>
+                      {day}
+                      {isToday && <span className="ml-1 text-[10px] uppercase tracking-wider text-gold-400/80 hidden sm:inline">(Today)</span>}
+                    </div>
                     {dayBookings.length > 0 && (
                       <div className="space-y-1">
                         {dayBookings.map((booking, idx) => (
